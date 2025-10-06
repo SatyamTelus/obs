@@ -63,6 +63,25 @@
     font-size: 16px;
     line-height: 1.8;
   }
+
+  // Mobile responsive adjustments
+  @media (max-width: 768px) {
+    padding: 60px 16px;
+    
+    .about-paragraph {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 40px 12px;
+    
+    .about-paragraph {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
 }
 
 // Carousel Container
@@ -85,6 +104,33 @@
   .nav-button-right {
     .nav-button-base();
     right: 10px;
+  }
+
+  // Mobile responsive adjustments
+  @media (max-width: 768px) {
+    .carousel-image {
+      height: 300px;
+    }
+    
+    .nav-button-left,
+    .nav-button-right {
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel-image {
+      height: 250px;
+    }
+    
+    .nav-button-left,
+    .nav-button-right {
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+    }
   }
 }
 
@@ -135,5 +181,30 @@
   .feature-card {
     height: 100%;
     border-radius: 12px;
+  }
+
+  // Mobile responsive adjustments
+  @media (max-width: 768px) {
+    padding: 60px 16px;
+    
+    .section-title {
+      margin-bottom: 32px;
+    }
+    
+    .activity-card {
+      margin-bottom: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 40px 12px;
+    
+    .section-title {
+      margin-bottom: 24px;
+    }
+    
+    .activity-card {
+      margin-bottom: 12px;
+    }
   }
 }

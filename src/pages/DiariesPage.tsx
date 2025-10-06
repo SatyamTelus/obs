@@ -4,6 +4,7 @@ import { UserOutlined, CalendarOutlined, EnvironmentOutlined, ArrowRightOutlined
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import '../styles/components/HeroSection.less';
+import '../styles/components/DiariesPage.less';
 import sceneryOtw from '../assets/treks/yulla/scenery-otw.jpg';
 import groupSummit from '../assets/treks/yulla/group-summit.png';
 import groupSummitSpiti from '../assets/treks/spiti/group-mountain.png';
@@ -147,7 +148,7 @@ const DiariesPage: React.FC = () => {
       </div>
 
       {/* Kuari Pass Coming Soon Section */}
-      <div style={{ 
+      <div className="kuari-coming-soon" style={{ 
         padding: '40px 24px', 
         maxWidth: '1200px', 
         margin: '0 auto',
@@ -245,13 +246,17 @@ const DiariesPage: React.FC = () => {
       </div>
 
       {/* Past Experiences */}
-      <div style={{ padding: '80px 24px', maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="experiences-section" style={{ 
+        padding: '80px 24px', 
+        maxWidth: '1200px', 
+        margin: '0 auto'
+      }}>
         <Title level={2} style={{ textAlign: 'center', marginBottom: '48px' }}>
           Our Recent Adventures
         </Title>
         <Row gutter={[24, 24]}>
           {experiences.map((experience) => (
-            <Col xs={24} lg={8} key={experience.id}>
+            <Col xs={24} sm={12} lg={8} key={experience.id}>
               <Card
                 hoverable
                 cover={
@@ -287,7 +292,7 @@ const DiariesPage: React.FC = () => {
                   </Space>
                   <Paragraph style={{ flex: 1 }}>{experience.description}</Paragraph>
                 </Space>
-                <div style={{ 
+                <div className="experience-tags" style={{ 
                   marginTop: 'auto', 
                   paddingTop: '12px',
                   display: 'flex',
@@ -306,7 +311,7 @@ const DiariesPage: React.FC = () => {
       </div>
 
       {/* Reviews Section */}
-      <div style={{ 
+      <div className="reviews-section" style={{ 
         background: isDarkMode ? '#1a1a1a' : 'white', 
         padding: '80px 24px',
         maxWidth: '1200px',
