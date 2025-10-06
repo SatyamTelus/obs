@@ -5,6 +5,17 @@
     <link rel="icon" type="image/png" href="/obsLogo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oh-Bhaisahab Experiences - Adventure Awaits</title>
+    
+    <!-- GitHub Pages SPA redirect handler -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect && redirect !== '/obs/') {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
