@@ -51,6 +51,16 @@ body {
   background-color: rgb(26, 26, 26) !important;
 }
 
+/* Fix Ant Design dark theme - make menu items transparent to avoid showing over hero images */
+.dark .ant-menu-dark.ant-menu-horizontal > .ant-menu-item-selected,
+.dark .ant-menu-dark.ant-menu-horizontal > .ant-menu-submenu-selected {
+  background-color: transparent !important;
+}
+
+.dark .ant-menu-dark.ant-menu-horizontal > .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  background-color: transparent !important;
+}
+
 /* Navigation hover colors */
 .ant-menu-item:hover {
   color: #d4a574 !important;
