@@ -1,0 +1,422 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+  
+  &:hover {
+    color: #535bf2;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  
+  &:hover {
+    border-color: #646cff;
+  }
+  
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+/* Custom focus styles for Ant Design buttons */
+.ant-btn:focus,
+.ant-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.3);
+}
+
+.ant-btn-primary:focus,
+.ant-btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.5);
+}
+
+.ant-btn-text:focus,
+.ant-btn-text:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Dark Mode Button Styling */
+html.dark {
+  /* WhatsApp Button Dimming */
+  .ant-btn.whatsapp-btn {
+    opacity: 0.85 !important;
+    filter: brightness(0.9) !important;
+    
+    .anticon, svg {
+      opacity: 0.8 !important;
+      filter: brightness(0.9) !important;
+    }
+  }
+  
+  /* Primary Button - Brand Color */
+  .ant-btn.ant-btn-primary {
+    background: #d4a574 !important;
+    background-color: #d4a574 !important;
+    border-color: #d4a574;
+    color: #ffffff;
+    
+    &:hover {
+      background: #b8945f !important;
+      background-color: #b8945f !important;
+      border-color: #b8945f;
+      color: #ffffff;
+    }
+    
+    &:active {
+      background: #a0854a !important;
+      background-color: #a0854a !important;
+      border-color: #a0854a;
+      color: #ffffff;
+    }
+    
+    &:focus,
+    &:focus-visible {
+      background: #d4a574 !important;
+      background-color: #d4a574 !important;
+      border-color: #d4a574;
+      color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.5);
+    }
+  }
+  
+  /* Default Button - Outline Style */
+  .ant-btn.ant-btn-default,
+  .ant-btn-default,
+  button.ant-btn.ant-btn-default,
+  .ant-btn-default:not(.ant-btn-primary):not(.ant-btn-dashed):not(.ant-btn-link):not(.ant-btn-text) {
+    background-color: transparent !important;
+    border-color: #d4a574 !important;
+    color: #d4a574 !important;
+    
+    /* Force text color on all child elements */
+    span, .anticon, svg, * {
+      color: #d4a574 !important;
+    }
+    
+    /* Additional specificity for button text */
+    &.ant-btn > span,
+    &.ant-btn .anticon,
+    &.ant-btn svg {
+      color: #d4a574 !important;
+    }
+    
+    &:hover {
+      background-color: transparent !important;
+      border-color: #b8945f !important;
+      color: #d4a574 !important;
+      
+      /* Keep golden color on all child elements on hover */
+      span, .anticon, svg, * {
+        color: #d4a574 !important;
+      }
+      
+      /* Additional specificity for button text on hover */
+      &.ant-btn > span,
+      &.ant-btn .anticon,
+      &.ant-btn svg {
+        color: #d4a574 !important;
+      }
+    }
+    
+    &:active {
+      background-color: #b8945f !important;
+      border-color: #b8945f !important;
+      color: #ffffff !important;
+    }
+    
+    &:focus,
+    &:focus-visible {
+      background-color: transparent !important;
+      border-color: #d4a574 !important;
+      color: #d4a574 !important;
+      box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.3) !important;
+    }
+  }
+  
+  /* WhatsApp Button - Green Theme */
+  .ant-btn.ant-btn-primary.whatsapp-btn {
+    background: #1e8b4f !important;
+    background-color: #1e8b4f !important;
+    border-color: #1e8b4f !important;
+    color: #ffffff !important;
+    
+    &:hover {
+      background: #1a7a45 !important;
+      background-color: #1a7a45 !important;
+      border-color: #1a7a45 !important;
+      color: #ffffff !important;
+    }
+    
+    &:active {
+      background: #16693b !important;
+      background-color: #16693b !important;
+      border-color: #16693b !important;
+      color: #ffffff !important;
+    }
+    
+    &:focus,
+    &:focus-visible {
+      background: #1e8b4f !important;
+    background-color: #1e8b4f !important;
+      border-color: #25D366;
+      color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(30, 139, 79, 0.5);
+    }
+  }
+}
+
+/* Light Mode Button Styling (default) */
+html:not(.dark) {
+  /* WhatsApp Button Dimming */
+  .ant-btn.whatsapp-btn {
+    opacity: 0.85 !important;
+    filter: brightness(0.9) !important;
+    
+    .anticon, svg {
+      opacity: 0.8 !important;
+      filter: brightness(0.9) !important;
+    }
+  }
+  
+  /* Primary Button - Brand Color */
+  .ant-btn.ant-btn-primary {
+    background-color: #d4a574;
+    border-color: #d4a574;
+    color: #ffffff;
+    
+    &:hover {
+      background: #b8945f !important;
+      background-color: #b8945f !important;
+      border-color: #b8945f;
+      color: #ffffff;
+    }
+    
+    &:active {
+      background: #a0854a !important;
+      background-color: #a0854a !important;
+      border-color: #a0854a;
+      color: #ffffff;
+    }
+    
+    &:focus,
+    &:focus-visible {
+      background: #d4a574 !important;
+      background-color: #d4a574 !important;
+      border-color: #d4a574;
+      color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.5);
+    }
+  }
+  
+  /* Default Button - Outline Style */
+  .ant-btn.ant-btn-default {
+    background-color: #ffffff;
+    border-color: #d4a574;
+    color: #d4a574;
+    
+    &:hover {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      border-color: #b8945f;
+      color: #d4a574;
+    }
+    
+    &:active {
+      background: #b8945f !important;
+      background-color: #b8945f !important;
+      border-color: #b8945f;
+      color: #ffffff;
+    }
+    
+    &:focus,
+    &:focus-visible {
+      background-color: #ffffff;
+      border-color: #d4a574;
+      color: #d4a574;
+      box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.3);
+    }
+  }
+  
+  /* WhatsApp Button - Green Theme */
+  .ant-btn.ant-btn-primary.whatsapp-btn {
+    background: #1e8b4f !important;
+    background-color: #1e8b4f !important;
+    border-color: #1e8b4f !important;
+    color: #ffffff !important;
+    
+    &:hover {
+      background: #1a7a45 !important;
+      background-color: #1a7a45 !important;
+      border-color: #1a7a45 !important;
+      color: #ffffff !important;
+    }
+    
+    &:active {
+      background: #16693b !important;
+      background-color: #16693b !important;
+      border-color: #16693b !important;
+      color: #ffffff !important;
+    }
+    
+    &:focus,
+    &:focus-visible {
+      background: #1e8b4f !important;
+    background-color: #1e8b4f !important;
+      border-color: #25D366;
+      color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(30, 139, 79, 0.5);
+    }
+  }
+}
+
+/* Menu item focus styles */
+.ant-menu-item:focus,
+.ant-menu-item:focus-visible {
+  outline: none;
+}
+
+.ant-menu-item-selected:focus,
+.ant-menu-item-selected:focus-visible {
+  outline: none;
+}
+
+/* Card focus styles */
+.ant-card:focus,
+.ant-card:focus-visible {
+  outline: none;
+}
+
+/* General focus removal for other Ant Design components */
+.ant-typography:focus,
+.ant-typography:focus-visible {
+  outline: none;
+}
+
+/* Custom Carousel Dots Styling */
+.ant-carousel .custom-dots {
+  bottom: 20px;
+  z-index: 10;
+
+  li {
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+
+    button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      padding: 0;
+      margin: 0;
+      font-size: 0;
+      line-height: 0;
+      text-indent: -9999px;
+      overflow: hidden;
+      position: relative;
+
+      &::before,
+      &::after {
+        display: none;
+        content: none;
+      }
+
+      * {
+        display: none;
+      }
+
+      &:before {
+        display: none;
+        content: '';
+      }
+
+      &:after {
+        display: none;
+        content: '';
+      }
+    }
+
+    &.slick-active button {
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 2px solid white;
+      transform: scale(1.2);
+    }
+
+    &:hover button {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 2px solid white;
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Custom dot styling */
+.custom-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.custom-dots li.slick-active .custom-dot {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid white;
+  transform: scale(1.2);
+}
+
+.custom-dots li:hover .custom-dot {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid white;
+  transform: scale(1.1);
+}

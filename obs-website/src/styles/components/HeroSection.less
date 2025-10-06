@@ -1,0 +1,224 @@
+@import '../globals/index.less';
+
+// Variables
+@primary-color: #d4a574;
+@dark-bg: #0f0f0f;
+@light-bg: #f5f5f5;
+@dark-text: #e5e5e5;
+@light-text: #666;
+
+// Mixins
+.text-shadow() {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.text-shadow-small() {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.button-shadow() {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+// Blinking animation for notification dots
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  51%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+// Standard Hero Section
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 60px 24px;
+  text-align: center;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+
+    .hero-title {
+      color: white;
+      margin-bottom: 16px;
+      .text-shadow();
+    }
+
+    .hero-paragraph {
+      font-size: 18px;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto 32px;
+      .text-shadow-small();
+    }
+
+    .hero-button {
+      background-color: @primary-color;
+      border-color: @primary-color;
+      .button-shadow();
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.6);
+      }
+    }
+  }
+}
+
+// Hero Section with Gradient Background (for pages without images)
+.hero-section-gradient {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 60px 24px;
+  text-align: center;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &.light {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+
+    .hero-content {
+      .hero-title {
+        color: white;
+        .text-shadow();
+      }
+
+      .hero-paragraph {
+        color: white;
+        .text-shadow-small();
+      }
+    }
+  }
+
+  &.dark {
+    background: linear-gradient(135deg, #e5e5e5 0%, #d4d4d8 100%);
+    color: #000000;
+
+    .hero-content {
+      .hero-title {
+        color: #000000;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+      }
+
+      .hero-paragraph {
+        color: #000000;
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+
+    .hero-title {
+      margin-bottom: 16px;
+    }
+
+    .hero-paragraph {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-button {
+      background-color: @primary-color;
+      border-color: @primary-color;
+      .button-shadow();
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.6);
+      }
+    }
+  }
+}
+
+// Compact Hero Section (for pages that need less height)
+.hero-section-compact {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 40px 24px;
+  text-align: center;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+
+    .hero-title {
+      color: white;
+      margin-bottom: 16px;
+      .text-shadow();
+    }
+
+    .hero-paragraph {
+      font-size: 18px;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto 32px;
+      .text-shadow-small();
+    }
+
+    .hero-button {
+      background-color: @primary-color;
+      border-color: @primary-color;
+      .button-shadow();
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.6);
+      }
+    }
+  }
+}

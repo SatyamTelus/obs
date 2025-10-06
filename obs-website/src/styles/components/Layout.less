@@ -1,0 +1,108 @@
+@import '../globals/index.less';
+
+// Variables
+@primary-color: #d4a574;
+@dark-bg: #0f0f0f;
+@light-bg: #f5f5f5;
+@dark-header-bg: #1a1a1a;
+@light-header-bg: #fff;
+@dark-footer-bg: #1a1a1a;
+@light-footer-bg: #f0f2f5;
+@dark-border: #404040;
+@light-border: #d9d9d9;
+@dark-text: #a3a3a3;
+@light-text: #666;
+@dark-title: #e5e5e5;
+
+// Layout Container
+.ant-layout.layout-container {
+  min-height: 100vh;
+}
+
+// Header Styles
+.ant-layout-header.layout-header {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  border-bottom: none;
+  flex-wrap: wrap;
+  min-height: 64px;
+  transition: all 0.3s ease;
+
+  &.light {
+    background: @light-header-bg;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &.dark {
+    background: @dark-header-bg;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid @dark-border;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+    cursor: pointer;
+    min-width: fit-content;
+    flex-shrink: 0;
+
+    .logo-image {
+      height: 40px;
+      width: auto;
+      margin-right: 12px;
+    }
+
+    .logo-title {
+      margin: 0;
+      color: @primary-color;
+      transition: color 0.3s ease;
+
+      &.dark-mode {
+        color: @dark-title;
+      }
+    }
+  }
+
+  .navigation-menu {
+    flex: 1;
+    border-bottom: none;
+    background: transparent;
+    min-width: 0;
+  }
+
+  .header-actions {
+    flex-shrink: 0;
+  }
+}
+
+// Content Styles
+.ant-layout-content.layout-content {
+  padding: 0;
+  background: @light-bg;
+  transition: background-color 0.3s ease;
+
+  &.dark {
+    background: @dark-bg;
+  }
+}
+
+// Footer Styles
+.ant-layout-footer.layout-footer {
+  text-align: center;
+  margin-top: auto;
+  transition: all 0.3s ease;
+
+  &.light {
+    background: @light-footer-bg;
+    color: @light-text;
+    border-top: 1px solid @light-border;
+  }
+
+  &.dark {
+    background: @dark-footer-bg;
+    color: @dark-text;
+    border-top: 1px solid @dark-border;
+  }
+}

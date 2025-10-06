@@ -1,0 +1,139 @@
+@import '../globals/index.less';
+@import './HeroSection.less';
+
+// Variables
+@primary-color: #d4a574;
+@dark-bg: #0f0f0f;
+@light-bg: #f5f5f5;
+@dark-section-bg: #1a1a1a;
+@light-section-bg: white;
+@dark-section-bg-alt: #262626;
+@light-section-bg-alt: #f8f9fa;
+
+// Mixins
+.nav-button-base() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+  }
+}
+
+// Main container
+.homepage-container {
+  background: @light-bg;
+  transition: background-color 0.3s ease;
+
+  &.dark-mode {
+    background: @dark-bg;
+  }
+}
+
+// About OBS Section
+.about-section {
+  padding: 80px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .about-title {
+    // Title styling will be handled by Ant Design
+  }
+
+  .about-paragraph {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
+
+// Carousel Container
+.carousel-container {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .carousel-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .nav-button-left {
+    .nav-button-base();
+    left: 10px;
+  }
+
+  .nav-button-right {
+    .nav-button-base();
+    right: 10px;
+  }
+}
+
+// Content Sections
+.content-section {
+  padding: 80px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: background-color 0.3s ease;
+
+  &.light {
+    background: @light-section-bg;
+  }
+
+  &.dark {
+    background: @dark-section-bg;
+  }
+
+  &.light-alt {
+    background: @light-section-bg-alt;
+  }
+
+  &.dark-alt {
+    background: @dark-section-bg-alt;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .activity-card {
+    height: 100%;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    .activity-icon {
+      font-size: 24px;
+      color: @primary-color;
+
+      &.dark-mode {
+        color: #e5e5e5;
+      }
+    }
+  }
+
+  .feature-card {
+    height: 100%;
+    border-radius: 12px;
+  }
+}
