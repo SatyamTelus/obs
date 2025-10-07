@@ -1,10 +1,15 @@
 import React, { useRef } from 'react';
-import { Row, Col, Typography, Card, Button, Space, Tag, Alert } from 'antd';
-import { CalendarOutlined, EnvironmentOutlined, TeamOutlined, ClockCircleOutlined, WalletOutlined, DownloadOutlined, CreditCardOutlined } from '@ant-design/icons';
+import { Row, Col, Typography, Card, Button, Space, Tag, Alert, Carousel } from 'antd';
+import type { CarouselRef } from 'antd/es/carousel';
+import { CalendarOutlined, EnvironmentOutlined, TeamOutlined, ClockCircleOutlined, WalletOutlined, DownloadOutlined, CreditCardOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import '../styles/components/HeroSection.less';
+import '../styles/components/CarouselCustom.less';
 import grasslandMountain from '../assets/treks/yulla/grassland-mountain.jpg';
 import kuariRanges from '../assets/treks/kuari/kuari-ranges.png';
+import groupPrevious from '../assets/treks/kuari/group-previous.png';
+import kuariTaliLake from '../assets/treks/kuari/Kuari-Pass-Trek-Tali-Lake.webp';
+import kuariScenery from '../assets/treks/kuari/kuari-scenery.avif';
 import kuariPassBrochure from '../assets/treks/kuari/Kuari Pass Trek Brochure (Oh Bhaisahab Experience).pdf';
 import upiQRCode from '../assets/upi.png';
 
@@ -13,6 +18,7 @@ const { Title, Paragraph, Text } = Typography;
 const UpcomingPage: React.FC = () => {
   const { isDarkMode } = useDarkMode();
   const paymentMessageRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<CarouselRef>(null);
 
   // WhatsApp Icon Component
   const WhatsAppIcon = () => (
@@ -50,7 +56,13 @@ const UpcomingPage: React.FC = () => {
     maxParticipants: "25-30",
     price: '₹12,999 per person',
     location: 'Garhwal Himalayas, Uttarakhand',
-    image: kuariRanges,
+    images: [
+      kuariRanges,
+      kuariTaliLake,
+      kuariScenery,
+      groupPrevious,
+      // Add more images here as you download them
+    ],
     description: 'Experience the magic of winter in the Garhwal Himalayas with our signature Kuari Pass trek. This moderate-level trek offers breathtaking views of snow-capped peaks including Nanda Devi, Trishul, and Dronagiri.',
     highlights: [
       'Breathtaking views of Nanda Devi (7,816m) and other Himalayan peaks',
@@ -181,16 +193,69 @@ const UpcomingPage: React.FC = () => {
         >
           <Row gutter={[32, 32]} align="top">
             <Col xs={24} lg={12}>
-              <div style={{ paddingTop: '8px' }}>
-                <img 
-                  src={kuariPassDetails.image} 
-                  alt={kuariPassDetails.title}
-                  style={{ 
-                    width: '100%', 
-                    height: '500px', 
-                    objectFit: 'cover',
-                    borderRadius: '8px'
+              <div className="trek-carousel" style={{ paddingTop: '8px', position: 'relative' }}>
+                <Carousel 
+                  ref={carouselRef}
+                  autoplay
+                  autoplaySpeed={4000}
+                  dots={true}
+                  dotPosition="bottom"
+                  effect="fade"
+                  style={{ borderRadius: '8px', overflow: 'hidden' }}
+                >
+                  {kuariPassDetails.images.map((image, index) => (
+                    <div key={index}>
+                      <img 
+                        src={image} 
+                        alt={`${kuariPassDetails.title} - Image ${index + 1}`}
+                        style={{ 
+                          width: '100%', 
+                          height: '500px', 
+                          objectFit: 'cover',
+                          borderRadius: '8px'
+                        }}
+                      />
+                    </div>
+                  ))}
+                </Carousel>
+                {/* Custom Navigation Arrows */}
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon={<LeftOutlined />}
+                  onClick={() => carouselRef.current?.prev()}
+                  className="carousel-nav-button"
+                  style={{
+                    position: 'absolute',
+                    left: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 10,
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    border: 'none',
+                    opacity: 0.7
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+                />
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon={<RightOutlined />}
+                  onClick={() => carouselRef.current?.next()}
+                  className="carousel-nav-button"
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 10,
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    border: 'none',
+                    opacity: 0.7
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
                 />
               </div>
             </Col>
@@ -306,15 +371,47 @@ const UpcomingPage: React.FC = () => {
 
         {/* Highlights */}
         <Card title="Trek Highlights" style={{ marginBottom: '40px', borderRadius: '12px' }}>
-          <Row gutter={[16, 16]}>
-            {kuariPassDetails.highlights.map((highlight, index) => (
-              <Col xs={24} sm={12} key={index}>
-                <Space>
-                  <Text style={{ color: '#52c41a' }}>✓</Text>
-                  <Text>{highlight}</Text>
-                </Space>
-              </Col>
-            ))}
+          <Row gutter={[32, 32]}>
+            {/* Video Section */}
+            <Col xs={24} lg={12}>
+              <div style={{ 
+                position: 'relative',
+                paddingTop: '56.25%', /* 16:9 Aspect Ratio */
+                width: '100%',
+                marginBottom: '16px'
+              }}>
+                <iframe
+                  src="https://www.youtube.com/embed/9czKeIJJGjQ"
+                  title="Kuari Pass Trek Highlights"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '12px',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
+                  }}
+                />
+              </div>
+            </Col>
+            
+            {/* Highlights List */}
+            <Col xs={24} lg={12}>
+              <Row gutter={[16, 16]}>
+                {kuariPassDetails.highlights.map((highlight, index) => (
+                  <Col xs={24} sm={12} key={index}>
+                    <Space>
+                      <Text style={{ color: '#52c41a' }}>✓</Text>
+                      <Text>{highlight}</Text>
+                    </Space>
+                  </Col>
+                ))}
+              </Row>
+            </Col>
           </Row>
         </Card>
 

@@ -164,27 +164,47 @@ const HomePage: React.FC = () => {
         <Title level={2} className="section-title">
           Our Signature Activities
         </Title>
-        <Row gutter={[24, 24]} justify="center">
-          {signatureActivities.map((activity, index) => (
-            <Col xs={24} sm={12} md={8} lg={6} key={index}>
-              <Card 
-                hoverable
-                className="activity-card"
-                style={{ height: '100%' }}
-              >
-                <Space direction="vertical" size="large" style={{ width: '100%', textAlign: 'center' }}>
-                  <div style={{ fontSize: '32px' }}>{activity.title.split(' ')[0]}</div>
-                  <Title level={4} style={{ margin: 0, fontSize: '18px' }}>
-                    {activity.title.substring(activity.title.indexOf(' ') + 1)}
-                  </Title>
-                  <Paragraph style={{ margin: 0, fontSize: '14px', lineHeight: '1.6' }}>
-                    {activity.description}
-                  </Paragraph>
-                </Space>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <div className="activities-flex-container">
+          {/* Video Section - Primary Content */}
+          <div className="video-primary">
+            <div className="video-container">
+              <div className="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/DGmrc1FvoNo"
+                  title="Oh Bhaisahab Experiences - Adventure Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="youtube-iframe"
+                />
+              </div>
+            </div>
+          </div>
+          
+          {/* Activities Section - Secondary Content */}
+          <div className="activities-secondary">
+            <div className="activities-grid">
+              {signatureActivities.map((activity, index) => (
+                <div key={index} className="activity-item">
+                  <Card 
+                    hoverable
+                    className="activity-card"
+                  >
+                    <Space direction="vertical" size="large" style={{ width: '100%', textAlign: 'center' }}>
+                      <div style={{ fontSize: '32px' }}>{activity.title.split(' ')[0]}</div>
+                      <Title level={4} style={{ margin: 0, fontSize: '18px' }}>
+                        {activity.title.substring(activity.title.indexOf(' ') + 1)}
+                      </Title>
+                      <Paragraph style={{ margin: 0, fontSize: '14px', lineHeight: '1.6' }}>
+                        {activity.description}
+                      </Paragraph>
+                    </Space>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Why Choose OBS */}

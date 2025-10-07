@@ -55,9 +55,6 @@
   max-width: 1200px;
   margin: 0 auto;
 
-  .about-title {
-    // Title styling will be handled by Ant Design
-  }
 
   .about-paragraph {
     font-size: 16px;
@@ -183,6 +180,99 @@
     border-radius: 12px;
   }
 
+  // Activities Flex Container
+  .activities-flex-container {
+    display: flex;
+    gap: 32px;
+    align-items: stretch; // Make children stretch to match heights
+    min-height: 600px; // Minimum height to ensure video has enough space
+    
+    @media (max-width: 1024px) {
+      flex-direction: column-reverse; // Activities first, then video
+      gap: 24px;
+      min-height: auto; // Reset min-height on mobile
+    }
+  }
+
+  // Video Primary Section
+  .video-primary {
+    flex: 1; // Equal flex basis
+    min-width: 0; // Prevents flex item from overflowing
+    display: flex;
+    
+    .video-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 400px; // Ensure minimum height on all screens
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .youtube-iframe {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border: none;
+          border-radius: 12px;
+        }
+        
+        // Mobile adjustments
+        @media (max-width: 768px) {
+          min-height: 300px;
+        }
+        
+        @media (max-width: 480px) {
+          min-height: 250px;
+        }
+      }
+    }
+  }
+
+  // Activities Secondary Section
+  .activities-secondary {
+    flex: 1; // Equal flex basis
+    min-width: 0; // Prevents flex item from overflowing
+    display: flex;
+    flex-direction: column;
+    
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 16px;
+      height: 100%;
+      
+      @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+      }
+      
+      .activity-item {
+        display: flex;
+        
+        .activity-card {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
   // Mobile responsive adjustments
   @media (max-width: 768px) {
     padding: 60px 16px;
@@ -193,6 +283,22 @@
     
     .activity-card {
       margin-bottom: 16px;
+    }
+
+    .activities-flex-container {
+      gap: 20px;
+    }
+    
+    .activities-secondary {
+      margin-bottom: 32px; // Add space between activities and video
+    }
+
+    .video-primary {
+      .video-container {
+        .video-wrapper {
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+      }
     }
   }
   
@@ -205,6 +311,14 @@
     
     .activity-card {
       margin-bottom: 12px;
+    }
+
+    .activities-flex-container {
+      gap: 16px;
+    }
+    
+    .activities-secondary {
+      margin-bottom: 24px; // Smaller space on mobile
     }
   }
 }

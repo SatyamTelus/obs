@@ -1,0 +1,180 @@
+// Custom Carousel Styles for Kuari Pass Trek Images
+
+.trek-carousel {
+  .ant-carousel {
+    .slick-dots {
+      bottom: 20px;
+      
+      li {
+        button {
+          background: rgba(255, 255, 255, 0.5);
+          height: 8px;
+          border-radius: 4px;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background: rgba(255, 255, 255, 0.8);
+          }
+        }
+        
+        &.slick-active {
+          button {
+            background: #d4a574;
+            width: 24px;
+          }
+        }
+      }
+    }
+    
+    .slick-slide {
+      transition: opacity 0.5s ease-in-out;
+    }
+  }
+  
+  // Navigation buttons hover effects
+  .carousel-nav-button {
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+      background: rgba(0, 0, 0, 0.7) !important;
+    }
+  }
+}
+
+// Dark mode support
+[data-theme='dark'] {
+  .trek-carousel {
+    .ant-carousel {
+      .slick-dots {
+        li {
+          button {
+            background: rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Highlights Video and Content Flex Container
+.highlights-flex-container {
+  display: flex;
+  gap: 32px;
+  align-items: stretch; // Make children stretch to match heights
+  
+  @media (max-width: 1024px) {
+    flex-direction: column-reverse; // Highlights first, then video
+    gap: 24px;
+  }
+  
+  // Video Section
+  .highlights-video {
+    flex: 1; // Equal flex basis
+    min-width: 0; // Prevents flex item from overflowing
+    align-self: flex-start; // Align to the top to match content height
+    
+    .video-container {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; // 16:9 aspect ratio for desktop
+        height: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+        
+        .youtube-iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+          border-radius: 12px;
+        }
+      }
+    }
+  }
+  
+  // Mobile adjustments for highlights section
+  @media (max-width: 1024px) {
+    .highlights-flex-container {
+      .highlights-video {
+        .video-container {
+          .video-wrapper {
+            height: 300px; // Fixed height for mobile
+            padding-bottom: 0; // Remove aspect ratio
+            
+            .youtube-iframe {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .highlights-flex-container {
+      .highlights-video {
+        .video-container {
+          .video-wrapper {
+            height: 250px; // Smaller height for smaller screens
+          }
+        }
+      }
+    }
+  }
+  
+  // Highlights Content Section
+  .highlights-content {
+    flex: 1; // Equal flex basis
+    min-width: 0; // Prevents flex item from overflowing
+    display: flex;
+    flex-direction: column;
+    
+    @media (max-width: 1024px) {
+      margin-bottom: 24px; // Add space between highlights and video
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .trek-carousel {
+    .ant-carousel {
+      .slick-dots {
+        bottom: 10px;
+        
+        li {
+          margin: 0 3px;
+          
+          button {
+            height: 6px;
+          }
+          
+          &.slick-active {
+            button {
+              width: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
