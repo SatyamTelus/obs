@@ -109,15 +109,10 @@ const HomePage: React.FC = () => {
           <Col xs={24} lg={12}>
             <Title level={2} className="about-title">About Oh-Bhaisahab Experiences</Title>
             <Paragraph className="about-paragraph">
-              Oh-Bhaisahab Experiences (OBS) is more than just a trekking company - we are your gateway 
-              to authentic Himalayan adventures. Founded with a passion for the mountains and a commitment 
-              to sustainable tourism, we offer carefully crafted experiences that showcase the natural 
-              beauty and cultural richness of the Indian Himalayas.
+              An Oh-Bhaisahab Experience is your passport to authentic Himalayan adventures. With a unique mix of trekking, fitness challenges, mindful practices, and cultural encounters, we create journeys that inspire both body and soul.
             </Paragraph>
             <Paragraph className="about-paragraph">
-              Our mission is to provide safe, memorable, and environmentally responsible adventure 
-              experiences while supporting local communities and preserving the pristine beauty of 
-              the mountains for future generations.
+              Our aim is simple: to turn strangers into friends, mountains into teachers and every trip into a story worth telling.
             </Paragraph>
           </Col>
           <Col xs={24} lg={12}>
@@ -226,8 +221,8 @@ const HomePage: React.FC = () => {
             <Card className="feature-card">
               <Title level={4}>🛡️ Safety First</Title>
               <Paragraph>
-                We prioritize your safety with proper equipment, emergency protocols, 
-                and comprehensive insurance coverage for all our adventures.
+                We prioritize your safety with proper equipment and emergency protocols 
+                for all our adventures.
               </Paragraph>
             </Card>
           </Col>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Typography, Card, Space, Avatar, Timeline, Button, Carousel } from 'antd';
-import { TeamOutlined, GlobalOutlined, LinkedinOutlined, YoutubeOutlined } from '@ant-design/icons';
+import { TeamOutlined, GlobalOutlined, LinkedinOutlined, YoutubeOutlined, DownOutlined, UpOutlined } from '@ant-design/icons';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import '../styles/components/HeroSection.less';
+import '../styles/components/UpcomingPage.less';
 import obsBackImage from '../assets/yatharth/obs-cover.jpg';
 import yatharthImage from '../assets/yatharth/yath-portrait.png';
 import ambujImage from '../assets/yatharth/ambuj.jpeg';
@@ -11,10 +12,11 @@ import bikeImage from '../assets/yatharth/bike.jpg';
 import skyDivingImage from '../assets/yatharth/yath-sky-diving.png';
 import gifts from '../assets/treks/spiti/gifts.png';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 const AboutPage: React.FC = () => {
   const { isDarkMode } = useDarkMode();
+  const [isExpanded, setIsExpanded] = useState(false);
   
   const storyCarouselImages = [
     {
@@ -37,7 +39,7 @@ const AboutPage: React.FC = () => {
   const teamMembers = [
     {
       name: 'Yatharth Gairola',
-      role: 'Founder & Lead Guide',
+      role: 'Founder & Experience Curator',
       experience: 'Content Creator since 2018, Ex-Physics Faculty',
       image: yatharthImage,
       description: 'B.E. Mechanical Engineering & M.Sc. Physics from BITS Pilani. Combines love for fitness, nature, and meaningful human connection to create experiences that are fun, raw, and transformative.',
@@ -48,7 +50,7 @@ const AboutPage: React.FC = () => {
     },
     {
       name: 'Ambuj Saxena',
-      role: 'Operations Manager',
+      role: 'Lead of Operations',
       experience: '5+ years in digital marketing & operations',
       image: ambujImage,
       description: 'Entrepreneur, digital marketing expert, and YouTuber with 25K+ subscribers. Ensures smooth operations and exceptional customer experience for all our adventures.',
@@ -62,9 +64,15 @@ const AboutPage: React.FC = () => {
 
   const milestones = [
     {
+      year: 'December 2024',
+      title: 'The Spark',
+      description: 'It all started with what I like to call "OBS Experience Pt. 0" - a sponsored trek that sparked the idea of creating fulfilling experiences for others. This was the moment when a simple thought transformed into a vision.',
+      videoUrl: 'https://www.youtube.com/watch?v=PLG-M8U1-6Y'
+    },
+    {
       year: 'March 2025',
       title: 'Foundation',
-      description: 'Oh-Bhaisahab Experiences was founded as a passion project turned movement to create adventure-driven, soul-nourishing outdoor experiences.'
+      description: 'Oh-Bhaisahab Experiences was officially founded as a passion project turned movement to create adventure-driven, soul-nourishing outdoor experiences.'
     },
     {
       year: '2025',
@@ -110,59 +118,135 @@ const AboutPage: React.FC = () => {
           <Col xs={24} lg={12}>
             <Title level={2}>Our Story</Title>
             <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
-              An OH-BHAISAB experience pushes you beyond your resume. It's a thrill that stays with you. 
-              It's about gaining clarity and freeing up your mind-space. Adventure here is all about mindset, 
-              not age and not just adrenaline.
+              Oh-Bhaisahab Experiences started with a simple dream—to blend adventure, fitness, and soulful activities into trekking, and turn it into something far more meaningful. For we believe, a trek is not just about reaching the summit, but about creating moments of connection, reflection, and transformation. OBS is #NotJustATrek—it's a journey that stays with you long after the trail ends.
             </Paragraph>
-            <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
-              Founded in March 2025 by Yatharth Gairola, Oh Bhaisahab Experiences is a passion project turned movement — 
-              a space where people disconnect from chaos and reconnect with nature, community, and themselves. 
-              We curate adventure-driven, soul-nourishing outdoor experiences that challenge the body, open the heart, 
-              and awaken the spirit.
-            </Paragraph>
-            <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
-              The name "Oh-Bhaisahab" reflects our respect for the mountains and the local culture. 
-              We believe that every adventure should be more than just a physical journey - it should 
-              be a transformative experience that connects you with nature, culture, and yourself.
-            </Paragraph>
+            
+            {isExpanded && (
+              <>
+                <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
+                  What started as a passion project by Yatharth Gairola has now grown into a community movement—where strangers become family, and every trail becomes a story of courage, laughter, and reflection.
+                </Paragraph>
+                <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
+                  At Oh-Bhaisahab Experiences (OBS), we believe life's best lessons are learned outside the classroom and beyond the comfort zone. From Himalayan trails to starry night skies, we curate journeys that blend adventure, reflection, fitness, and human connection.
+                </Paragraph>
+                <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
+                  Every trek is more than just a climb – it's about sharing laughter, pushing limits together, and returning with memories that last a lifetime. We are not just a travel company, we are a community that celebrates courage, curiosity, and the joy of living fully.
+                </Paragraph>
+              </>
+            )}
+            
+            <Button 
+              type="link" 
+              onClick={() => setIsExpanded(!isExpanded)}
+              style={{ 
+                padding: 0, 
+                height: 'auto',
+                color: '#d4a574',
+                fontWeight: 'bold'
+              }}
+              icon={isExpanded ? <UpOutlined /> : <DownOutlined />}
+            >
+              {isExpanded ? 'Read Less' : 'Read More'}
+            </Button>
           </Col>
           <Col xs={24} lg={12}>
-            <Carousel 
-              autoplay 
-              effect="fade"
-              style={{ borderRadius: '12px', overflow: 'hidden' }}
+            {/* Instagram Reel */}
+            <Card
+              style={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                border: 'none',
+                background: isDarkMode ? '#2a2a2a' : '#fff'
+              }}
+              bodyStyle={{ padding: 0 }}
             >
-              {storyCarouselImages.map((image, index) => (
-                <div key={index}>
-                  <div style={{
-                    backgroundImage: `url(${image.src})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    height: '400px',
-                    position: 'relative'
-                  }}>
-                    <div style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
-                      color: 'white',
-                      padding: '20px'
-                    }}>
-                      <Title level={3} style={{ color: 'white', margin: 0 }}>
-                        Adventure Awaits
-                      </Title>
-                      <Paragraph style={{ color: 'white', margin: 0 }}>
-                        Join us for unforgettable experiences in the Himalayas
-                      </Paragraph>
-                    </div>
-                  </div>
+              <div style={{ 
+                position: 'relative', 
+                width: '100%',
+                height: '500px', // Fixed height to ensure full content visibility
+                overflow: 'hidden'
+              }}>
+                <iframe
+                  src="https://www.instagram.com/reel/DM-ZpszzS9_/embed/"
+                  title="Oh-Bhaisahab Experiences Instagram Reel"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="no"
+                  allowTransparency={true}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '16px',
+                    display: 'block'
+                  }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  bottom: '12px',
+                  right: '12px',
+                  background: 'rgba(0,0,0,0.7)',
+                  color: 'white',
+                  padding: '6px 10px',
+                  borderRadius: '16px',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  backdropFilter: 'blur(10px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  zIndex: 10
+                }}>
+                  <span style={{ fontSize: '12px' }}>📱</span>
+                  Follow @yatharthgairola
                 </div>
-              ))}
-            </Carousel>
+              </div>
+            </Card>
           </Col>
         </Row>
+        
+        {/* Carousel Section - Below Our Story */}
+        <div style={{ marginTop: '60px' }}>
+          <Row justify="center">
+            <Col xs={24} lg={16}>
+              <Title level={3} style={{ 
+                textAlign: 'center', 
+                marginBottom: '32px',
+                color: isDarkMode ? '#fff' : '#000'
+              }}>
+                Adventure Gallery
+              </Title>
+              <Carousel 
+                autoplay 
+                effect="fade"
+                style={{ borderRadius: '12px', overflow: 'hidden' }}
+                className="about-carousel"
+              >
+                {storyCarouselImages.map((image, index) => (
+                  <div key={index}>
+                    <div 
+                      className="carousel-slide"
+                      style={{ backgroundImage: `url(${image.src})` }}
+                    >
+                      <div className="carousel-overlay">
+                        <Title level={3} style={{ color: 'white', margin: 0 }}>
+                          Adventure Awaits
+                        </Title>
+                        <Paragraph style={{ color: 'white', margin: 0 }}>
+                          Join us for unforgettable experiences in the Himalayas
+                        </Paragraph>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </Carousel>
+            </Col>
+          </Row>
+        </div>
       </div>
 
       {/* Key Elements */}
@@ -174,7 +258,7 @@ const AboutPage: React.FC = () => {
         transition: 'background-color 0.3s ease'
       }}>
         <Title level={2} style={{ textAlign: 'center', marginBottom: '48px' }}>
-          Key Elements of an OH-BHAISAB Experience
+          Key Elements of an OH-BHAISAHAB Experience
         </Title>
         <Row gutter={[24, 24]}>
           <Col xs={24} md={12}>
@@ -335,6 +419,36 @@ const AboutPage: React.FC = () => {
                     <Paragraph style={{ margin: '8px 0 0 0' }}>
                       {milestone.description}
                     </Paragraph>
+                    {milestone.videoUrl && (
+                      <div style={{ marginTop: '16px' }}>
+                        <div style={{ 
+                          position: 'relative',
+                          paddingTop: '56.25%', /* 16:9 Aspect Ratio */
+                          width: '100%',
+                          maxWidth: '400px'
+                        }}>
+                          <iframe
+                            src="https://www.youtube.com/embed/PLG-M8U1-6Y"
+                            title="The Beginning of Oh-Bhaisahab Experiences"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              width: '100%',
+                              height: '100%',
+                              borderRadius: '8px',
+                              boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                            }}
+                          />
+                        </div>
+                        <Text style={{ fontSize: '12px', color: '#666', fontStyle: 'italic' }}>
+                          Watch the story of how it all began
+                        </Text>
+                      </div>
+                    )}
                   </div>
                 ),
                 color: index % 2 === 0 ? 'blue' : 'green'
@@ -367,10 +481,8 @@ const AboutPage: React.FC = () => {
                 </div>
                 <Title level={3} style={{ textAlign: 'center' }}>Our Mission</Title>
                 <Paragraph style={{ fontSize: '16px', lineHeight: '1.8', textAlign: 'center' }}>
-                  We are not just taking you on a trip — We are taking you deeper into yourself! 
-                  Leave comfort behind. Find the stronger version of YOU! We provide safe, authentic, 
-                  and transformative Himalayan adventures that connect people with nature, promote 
-                  sustainable tourism, and create lasting memories while supporting local communities.
+                  Our mission is to help you find the stronger version of YOU!<br />
+                  We aim to create transformative Himalayan experiences that go beyond trekking— blending adventure, reflection, fitness, and community :)
                 </Paragraph>
               </Space>
             </Card>
@@ -389,10 +501,7 @@ const AboutPage: React.FC = () => {
                 </div>
                 <Title level={3} style={{ textAlign: 'center' }}>Our Vision</Title>
                 <Paragraph style={{ fontSize: '16px', lineHeight: '1.8', textAlign: 'center' }}>
-                  To turn treks into transformations, fun into self-discovery, & discomfort into growth. 
-                  We envision every participant saying "Oh-Bhaisahab, Mazaa Aa Gaya!" after their 
-                  transformative journey, creating a community of adventure enthusiasts who believe 
-                  in pushing beyond their limits.
+                  To create a global movement where adventure becomes a catalyst for personal growth, human connection, and sustainable living — inspiring people everywhere to step beyond comfort, embrace the wild, and discover a deeper version of themselves.
                 </Paragraph>
               </Space>
             </Card>

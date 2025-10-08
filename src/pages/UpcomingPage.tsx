@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import { Row, Col, Typography, Card, Button, Space, Tag, Alert, Carousel } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
-import { CalendarOutlined, EnvironmentOutlined, TeamOutlined, ClockCircleOutlined, WalletOutlined, DownloadOutlined, CreditCardOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { CalendarOutlined, EnvironmentOutlined, ClockCircleOutlined, WalletOutlined, DownloadOutlined, CreditCardOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import '../styles/components/HeroSection.less';
+import '../styles/components/UpcomingPage.less';
 import '../styles/components/CarouselCustom.less';
 import grasslandMountain from '../assets/treks/yulla/grassland-mountain.jpg';
 import kuariRanges from '../assets/treks/kuari/kuari-ranges.png';
@@ -11,7 +12,7 @@ import groupPrevious from '../assets/treks/kuari/group-previous.png';
 import kuariTaliLake from '../assets/treks/kuari/Kuari-Pass-Trek-Tali-Lake.webp';
 import kuariScenery from '../assets/treks/kuari/kuari-scenery.avif';
 import kuariPassBrochure from '../assets/treks/kuari/Kuari Pass Trek Brochure (Oh Bhaisahab Experience).pdf';
-import upiQRCode from '../assets/upi.png';
+import upiQRCode from '../assets/upi.jpg';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -53,8 +54,7 @@ const UpcomingPage: React.FC = () => {
     date: 'December 25-30, 2025',
     duration: '6 Days / 5 Nights',
     difficulty: 'Moderate',
-    maxParticipants: "25-30",
-    price: '₹12,999 per person',
+    price: '₹12,999 (with transport), ₹10,499 (without transport)',
     location: 'Garhwal Himalayas, Uttarakhand',
     images: [
       kuariRanges,
@@ -63,7 +63,7 @@ const UpcomingPage: React.FC = () => {
       groupPrevious,
       // Add more images here as you download them
     ],
-    description: 'Experience the magic of winter in the Garhwal Himalayas with our signature Kuari Pass trek. This moderate-level trek offers breathtaking views of snow-capped peaks including Nanda Devi, Trishul, and Dronagiri.',
+    description: 'Experience the magic of winter in the Garhwal Himalayas with our signature Kuari Pass trek. This easy-moderate level trek offers breathtaking views of snow-capped peaks including Nanda Devi, Trishul, and Dronagiri.',
     highlights: [
       'Breathtaking views of Nanda Devi (7,816m) and other Himalayan peaks',
       'Walk through pristine snow-covered trails',
@@ -208,12 +208,7 @@ const UpcomingPage: React.FC = () => {
                       <img 
                         src={image} 
                         alt={`${kuariPassDetails.title} - Image ${index + 1}`}
-                        style={{ 
-                          width: '100%', 
-                          height: '500px', 
-                          objectFit: 'cover',
-                          borderRadius: '8px'
-                        }}
+                        className="carousel-image"
                       />
                     </div>
                   ))}
@@ -225,18 +220,7 @@ const UpcomingPage: React.FC = () => {
                   icon={<LeftOutlined />}
                   onClick={() => carouselRef.current?.prev()}
                   className="carousel-nav-button"
-                  style={{
-                    position: 'absolute',
-                    left: '10px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 10,
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    border: 'none',
-                    opacity: 0.7
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+                  style={{ left: '10px' }}
                 />
                 <Button
                   type="primary"
@@ -244,18 +228,7 @@ const UpcomingPage: React.FC = () => {
                   icon={<RightOutlined />}
                   onClick={() => carouselRef.current?.next()}
                   className="carousel-nav-button"
-                  style={{
-                    position: 'absolute',
-                    right: '10px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 10,
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    border: 'none',
-                    opacity: 0.7
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+                  style={{ right: '10px' }}
                 />
               </div>
             </Col>
@@ -272,9 +245,6 @@ const UpcomingPage: React.FC = () => {
                     <Tag color="green" icon={<ClockCircleOutlined />}>
                       {kuariPassDetails.duration}
                     </Tag>
-                    <Tag color="orange" icon={<TeamOutlined />}>
-                      Max {kuariPassDetails.maxParticipants} participants
-                    </Tag>
                   </Space>
                 </div>
 
@@ -289,18 +259,27 @@ const UpcomingPage: React.FC = () => {
                   {kuariPassDetails.description}
                 </Paragraph>
 
-                <div style={{ 
-                  background: '#f0f8ff', 
-                  padding: '16px', 
-                  borderRadius: '8px',
-                  border: '1px solid #d6e4ff'
-                }}>
-                  <Space>
-                    <WalletOutlined style={{ color: '#52c41a', fontSize: '20px' }} />
-                    <Text strong style={{ fontSize: '18px', color: '#52c41a' }}>
-                      {kuariPassDetails.price}
-                    </Text>
-                  </Space>
+                <div className={`pricing-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+                  <div className="pricing-header">
+                    <WalletOutlined className="wallet-icon" />
+                    <Text strong className="pricing-title">Pricing Options:</Text>
+                  </div>
+                  <Row gutter={[16, 16]} className="pricing-cards">
+                    <Col xs={24} sm={12}>
+                      <div className={`pricing-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+                        <Text strong className="price-amount with-transport">₹12,999</Text>
+                        <br />
+                        <Text className={`price-description ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>With Transport</Text>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <div className={`pricing-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+                        <Text strong className="price-amount without-transport">₹10,499</Text>
+                        <br />
+                        <Text className={`price-description ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>Without Transport</Text>
+                      </div>
+                    </Col>
+                  </Row>
                 </div>
 
                 {/* Payment Plan Highlight */}
@@ -417,7 +396,7 @@ const UpcomingPage: React.FC = () => {
 
         {/* Itinerary */}
         <Card title="Detailed Itinerary" style={{ marginBottom: '40px', borderRadius: '12px' }}>
-          <Row gutter={[24, 24]}>
+          <Row gutter={[24, 16]}>
             {kuariPassDetails.itinerary.map((day, index) => (
               <Col xs={24} key={index}>
                 <Card 
@@ -427,27 +406,28 @@ const UpcomingPage: React.FC = () => {
                       ? (index % 2 === 0 ? '#262626' : '#1a1a1a')
                       : (index % 2 === 0 ? '#f8f9fa' : 'white'),
                     border: isDarkMode ? '1px solid #404040' : '1px solid #e8e8e8',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    marginBottom: '8px'
                   }}
                 >
-                  <Row align="middle">
+                  <Row align="middle" gutter={[16, 8]}>
                     <Col xs={24} sm={3}>
-                      <Tag color="blue" style={{ fontSize: '14px', padding: '4px 12px' }}>
+                      <Tag color="blue" style={{ fontSize: '14px', padding: '4px 12px', marginBottom: '8px' }}>
                         {day.day}
                       </Tag>
                     </Col>
                     <Col xs={24} sm={4}>
-                      <Tag color={day.type === 'Trek' ? 'green' : day.type === 'Travel' ? 'orange' : 'purple'} style={{ fontSize: '12px', padding: '2px 8px' }}>
+                      <Tag color={day.type === 'Trek' ? 'green' : day.type === 'Travel' ? 'orange' : 'purple'} style={{ fontSize: '12px', padding: '2px 8px', marginBottom: '8px' }}>
                         {day.type}
                       </Tag>
                     </Col>
                     <Col xs={24} sm={6}>
-                      <Text strong style={{ color: isDarkMode ? '#e5e5e5' : '#000000' }}>
+                      <Text strong style={{ color: isDarkMode ? '#e5e5e5' : '#000000', display: 'block', marginBottom: '4px' }}>
                         {day.title}
                       </Text>
                     </Col>
                     <Col xs={24} sm={11}>
-                      <Text style={{ color: isDarkMode ? '#a3a3a3' : '#666666' }}>
+                      <Text style={{ color: isDarkMode ? '#a3a3a3' : '#666666', display: 'block' }}>
                         {day.description}
                       </Text>
                     </Col>
@@ -668,19 +648,31 @@ const UpcomingPage: React.FC = () => {
                     flex: 1,
                     alignItems: 'center'
                   }}>
-                    <img 
-                      src={upiQRCode} 
-                      alt="UPI QR Code for Payment"
-                      style={{ 
-                        maxWidth: '200px',
-                        height: 'auto',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-                      }}
-                    />
+                    <div style={{
+                      width: '200px',
+                      height: '200px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                      background: 'white',
+                      padding: '10px'
+                    }}>
+                      <img 
+                        src={upiQRCode} 
+                        alt="UPI QR Code for Payment"
+                        style={{ 
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          borderRadius: '4px'
+                        }}
+                      />
+                    </div>
                   </div>
                   <Text code style={{ fontSize: '14px' }}>
-                    UPI ID: gairolayatharth-2@okicici
+                    UPI ID: gairolayatharth@okaxis
                   </Text>
                 </div>
               </Col>
@@ -717,7 +709,7 @@ const UpcomingPage: React.FC = () => {
                           minWidth: '200px'
                         }}
                       >
-                        OBS WhatsApp Group
+                        Chat With Us!
                       </Button>
                     </div>
                   </div>

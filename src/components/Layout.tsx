@@ -77,7 +77,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </Content>
       
       <Footer className={`layout-footer ${isDarkMode ? 'dark' : 'light'}`}>
-        Oh-Bhaisahab Experiences ©2024 Created with ❤️ for Adventure Seekers
+        Oh-Bhaisahab Experiences ©2025 Created with ❤️ for Adventure Seekers
       </Footer>
     </AntLayout>
   );

@@ -9,6 +9,8 @@ import sceneryOtw from '../assets/treks/yulla/scenery-otw.jpg';
 import groupSummit from '../assets/treks/yulla/group-summit.png';
 import groupSummitSpiti from '../assets/treks/spiti/group-mountain.png';
 import groupSummitKuari from '../assets/treks/kuari/group-previous.png';
+import tejasviTestimonial from '../assets/testimonials/tejasvi.jpg';
+import pranathiTestimonial from '../assets/testimonials/pranathi.jpg';
 
 const { Title, Paragraph } = Typography;
 
@@ -76,7 +78,7 @@ const DiariesPage: React.FC = () => {
       location: 'Hyderabad',
       rating: 5,
       experience: 'Yulla Kanda Trek',
-      review: 'My first high-altitude trek and OBS made it perfect! Their preparation sessions and equipment guidance were invaluable. Truly commendable commitment to sustainable tourism.',
+      review: 'This OBS experience introduced me to a different version of myself and expanded my comfort zone. It helped me realize my capabilities and the importance of finding like-minded people. Most importantly, it taught me self-compassion - something I\'ve always struggled with. Thank you @yatharthgairola for this transformative experience!',
       date: 'August 2025'
     },
     {
@@ -85,29 +87,20 @@ const DiariesPage: React.FC = () => {
       location: 'Delhi',
       rating: 5,
       experience: 'Spiti Valley Adventure',
-      review: 'Impressed by OBS\'s medical preparedness and safety protocols. The monastery visits and local community interactions were deeply enriching.',
-      date: 'October 2025'
+      review: 'Every step on those trails gave me joy, strength, and beautiful memories. Strangers turned into friends, creating moments I\'ll always cherish. Yatharth is such a pure soul, full of energy and innocence that instantly touches your heart. Thank you for spreading happiness wherever you go - my heart is full!',
+      date: 'September 2025'
     },
     {
       id: 5,
-      name: 'Osman Ali Khan',
-      location: 'Hyderabad',
-      rating: 5,
-      experience: 'Spiti Valley Adventure',
-      review: 'Beyond my wildest expectations! Their expertise in high-altitude desert trekking is unmatched. The cultural immersion activities were extraordinary.',
-      date: 'October 2025'
-    },
-    {
-      id: 6,
       name: 'Bhavya Goyal',
       location: 'Ludhiana',
       rating: 5,
       experience: 'Spiti Valley Adventure',
       review: 'OBS transformed my understanding of adventure travel! Perfectly balanced between adventure and cultural exploration. Creates memories that last a lifetime!',
-      date: 'October 2025'
+      date: 'September 2025'
     },
     {
-      id: 7,
+      id: 6,
       name: 'Rajesh Kumar',
       location: 'Mumbai',
       rating: 5,
@@ -116,7 +109,7 @@ const DiariesPage: React.FC = () => {
       date: 'March 2025'
     },
     {
-      id: 8,
+      id: 7,
       name: 'Priya Sharma',
       location: 'Bangalore',
       rating: 5,
@@ -142,7 +135,7 @@ const DiariesPage: React.FC = () => {
             Previous OBS Diaries
           </Title>
           <Paragraph className="hero-paragraph">
-            Relive the memories of our past adventures and read testimonials from fellow adventurers
+            Relive the memories of our past Oh-Bhaisahab experiences and read testimonials from fellow adventurers
           </Paragraph>
         </div>
       </div>
@@ -357,6 +350,62 @@ const DiariesPage: React.FC = () => {
             </Col>
           ))}
         </Row>
+        
+        {/* Featured Testimonials - Social Media Posts */}
+        <div style={{ marginTop: '60px' }}>
+          <Title level={3} style={{ textAlign: 'center', marginBottom: '40px', color: isDarkMode ? '#fff' : '#000' }}>
+            Stories That Speak Volumes
+          </Title>
+          <Row gutter={[32, 32]} justify="center">
+            <Col xs={24} md={12} lg={10}>
+              <Card
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                  border: 'none',
+                  background: isDarkMode ? '#2a2a2a' : '#fff'
+                }}
+                bodyStyle={{ padding: 0 }}
+              >
+                <img
+                  src={tejasviTestimonial}
+                  alt="Tejasvi's testimonial from @sahtejasvi"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    borderRadius: '16px'
+                  }}
+                />
+              </Card>
+            </Col>
+            
+            <Col xs={24} md={12} lg={10}>
+              <Card
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                  border: 'none',
+                  background: isDarkMode ? '#2a2a2a' : '#fff'
+                }}
+                bodyStyle={{ padding: 0 }}
+              >
+                <img
+                  src={pranathiTestimonial}
+                  alt="Pranathi's testimonial from @pranathi_punjaala"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    borderRadius: '16px'
+                  }}
+                />
+              </Card>
+            </Col>
+          </Row>
+        </div>
       </div>
     </div>
   );
