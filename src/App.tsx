@@ -29,7 +29,7 @@ const AppContent: React.FC = () => {
         },
       }}
     >
-      <Router basename="/obs">
+      <Router basename="/">
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
