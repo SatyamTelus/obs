@@ -534,24 +534,26 @@ const AboutPage: React.FC = () => {
               <Paragraph className={`contact-description ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
                 Have questions or want to book your spot? We're here to help!
               </Paragraph>
-              <Space size="large" wrap>
-                <Button 
-                  type="primary" 
-                  href="https://wa.me/917983414419"
-                  target="_blank"
-                  icon={<WhatsAppIcon />}
-                  className="contact-whatsapp-btn"
-                >
-                  WhatsApp: +91 79834 14419
-                </Button>
-                <Button 
-                  type="default" 
-                  href="mailto:obsyatharth@gmail.com"
-                  className="contact-email-btn"
-                >
-                  📧 Email Us
-                </Button>
-              </Space>
+              <div className="contact-buttons-container">
+                <div className="contact-buttons-wrapper">
+                  <Button 
+                    type="primary" 
+                    href="https://wa.me/917983414419"
+                    target="_blank"
+                    icon={<WhatsAppIcon />}
+                    className="contact-whatsapp-btn contact-button"
+                  >
+                    WhatsApp: +91 79834 14419
+                  </Button>
+                  <Button 
+                    type="default" 
+                    href="mailto:obsyatharth@gmail.com"
+                    className="contact-email-btn contact-button"
+                  >
+                    📧 Email Us
+                  </Button>
+                </div>
+              </div>
             </div>
           </Col>
         </Row>

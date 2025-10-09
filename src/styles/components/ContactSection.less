@@ -59,3 +59,47 @@
     color: #d4a574;
   }
 }
+
+.contact-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.contact-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  width: auto;
+}
+
+.contact-button {
+  height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 200px;
+}
+
+// Mobile-specific styles
+@media (max-width: 768px) {
+  .contact-buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-buttons-wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .contact-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
