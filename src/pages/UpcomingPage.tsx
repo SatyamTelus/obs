@@ -671,9 +671,22 @@ const UpcomingPage: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <Text code style={{ fontSize: '14px' }}>
-                    UPI ID: gairolayatharth@okaxis
-                  </Text>
+                  {/* Desktop UPI ID */}
+                  <div className="desktop-upi">
+                    <Text code className="upi-id-text">
+                      UPI ID: gairolayatharth@okaxis
+                    </Text>
+                  </div>
+                  
+                  {/* Mobile Book Slot Button */}
+                  <div className="mobile-book-slot">
+                    <a 
+                      href="upi://pay?pa=gairolayatharth@okaxis&pn=gairolayatharth&am=2999&cu=INR"
+                      className={`book-slot-button ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+                    >
+                      📱 Click to Book Slot!
+                    </a>
+                  </div>
                 </div>
               </Col>
               <Col xs={24} md={12}>

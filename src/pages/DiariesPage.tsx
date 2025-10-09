@@ -8,7 +8,7 @@ import '../styles/components/DiariesPage.less';
 import sceneryOtw from '../assets/treks/yulla/scenery-otw.jpg';
 import groupSummit from '../assets/treks/yulla/group-summit.png';
 import groupSummitSpiti from '../assets/treks/spiti/group-mountain.png';
-import groupSummitKuari from '../assets/treks/kuari/group-previous.png';
+import dayaraGroup from '../assets/treks/dayara/dayara_group.jpg';
 import tejasviTestimonial from '../assets/testimonials/tejasvi.jpg';
 import pranathiTestimonial from '../assets/testimonials/pranathi.jpg';
 
@@ -20,14 +20,14 @@ const DiariesPage: React.FC = () => {
   const experiences = [
     {
       id: 1,
-      title: 'Kuari Pass Trek - Winter Wonderland',
-      date: 'March 2025',
-      location: 'Garhwal, Uttarakhand',
-      image: groupSummitKuari,
-      description: 'An incredible winter trek through snow-covered trails with breathtaking views of Nanda Devi and other peaks.',
-      participants: 12,
-      duration: '6 days',
-      difficulty: 'Moderate'
+      title: 'Dayara Bugyal - Alpine Meadows Adventure',
+      date: 'June 2025',
+      location: 'Uttarkashi, Uttarakhand',
+      image: dayaraGroup,
+      description: 'Explored the stunning alpine meadows of Dayara Bugyal, one of India\'s most breathtaking high-altitude grasslands at 12,000 feet. Witnessed panoramic views of the Garhwal Himalayas.',
+      participants: 15,
+      duration: '5 days',
+      difficulty: 'Easy'
     },
     {
       id: 2,
@@ -49,7 +49,7 @@ const DiariesPage: React.FC = () => {
       description: 'Explored the high-altitude desert landscape, ancient monasteries, and crystal-clear lakes of the vast Spiti Valley.',
       participants: 7,
       duration: '8 days',
-      difficulty: 'Moderate to Challenging'
+      difficulty: 'Easy to Moderate'
     }
   ];
 
@@ -104,18 +104,18 @@ const DiariesPage: React.FC = () => {
       name: 'Rajesh Kumar',
       location: 'Mumbai',
       rating: 5,
-      experience: 'Kuari Pass Trek',
-      review: 'The winter Kuari Pass trek was magical! Snow-covered trails and breathtaking views of Nanda Devi. Yatharth\'s guidance made it safe and unforgettable.',
-      date: 'March 2025'
+      experience: 'Dayara Bugyal Trek',
+      review: 'The Dayara Bugyal trek was absolutely magical! Rolling alpine meadows and breathtaking views of the Garhwal Himalayas. Yatharth\'s guidance made it safe and unforgettable.',
+      date: 'June 2025'
     },
     {
       id: 7,
       name: 'Priya Sharma',
       location: 'Bangalore',
       rating: 5,
-      experience: 'Kuari Pass Trek',
-      review: 'Amazing winter adventure! The signature OBS experiences like Happiness Sharing and Alpine Olympics made this trek truly special. Highly recommended!',
-      date: 'March 2025'
+      experience: 'Dayara Bugyal Trek',
+      review: 'Amazing alpine meadow adventure! The signature OBS experiences like Happiness Sharing and Alpine Olympics made this trek truly special. Highly recommended!',
+      date: 'June 2025'
     }
   ];
 
