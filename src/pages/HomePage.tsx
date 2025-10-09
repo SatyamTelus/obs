@@ -11,7 +11,7 @@ import kuariRanges from '../assets/treks/kuari/kuari-ranges.png';
 import groupSummit from '../assets/treks/yulla/group-summit.png';
 import groupMountain from '../assets/treks/spiti/group-mountain.png';
 import groupBackpack from '../assets/treks/yulla/group-backpack.png';
-import yullaPanorama1 from '../assets/treks/yulla/panorma.jpg';
+import yullaPanorama1 from '../assets/cover-gen-min.png';
 
 const { Title, Paragraph } = Typography;
 
