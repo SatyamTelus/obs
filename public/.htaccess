@@ -1,0 +1,14 @@
+# Cache control for static assets
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000"
+</FilesMatch>
+
+# Cache control for HTML files
+<FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+</FilesMatch>
+
+# Force revalidation of CSS and JS files with hashes
+<FilesMatch "index-[A-Za-z0-9]+\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000"
+</FilesMatch>
