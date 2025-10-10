@@ -28,8 +28,8 @@ const WaterBubblesBackground: React.FC<WaterBubblesBackgroundProps> = ({ classNa
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    // Set background colors based on dark mode - subtle cyan tint in light mode for elegance
-    const backgroundColor = isDarkMode ? new THREE.Color(0x0f0f0f) : new THREE.Color(0xf0f8ff); // Very subtle cyan tint (alice blue)
+    // Set background colors based on dark mode - whitish for light mode to match other pages
+    const backgroundColor = isDarkMode ? new THREE.Color(0x0f0f0f) : new THREE.Color(0xf8f9fa); // Whitish background to match other pages
     scene.background = backgroundColor;
     scene.fog = new THREE.Fog(scene.background.getHex(), 50, 200);
 
