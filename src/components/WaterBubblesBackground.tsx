@@ -357,7 +357,7 @@ const WaterBubblesBackground: React.FC<WaterBubblesBackgroundProps> = ({ classNa
         top: 0,
         left: 0,
         width: '100%',
-        height: '100%',
+        height: '100vh', // Only cover viewport height, not beyond
         zIndex: 0,
         pointerEvents: 'none',
       }}
