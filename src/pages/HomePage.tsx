@@ -4,6 +4,7 @@ import type { CarouselRef } from 'antd/es/carousel';
 import { ArrowRightOutlined, EnvironmentOutlined, TeamOutlined, SafetyOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useNavigate } from 'react-router-dom';
+import WaterBubblesBackground from '../components/WaterBubblesBackground';
 import '../styles/components/HomePage.less';
 
 // Import images
@@ -73,6 +74,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={`homepage-container ${isDarkMode ? 'dark-mode' : ''}`}>
+      {/* Water Bubbles Background - covers entire page */}
+      <WaterBubblesBackground className="water-bubbles-background" />
+
       {/* Hero Section */}
       <div 
         className="hero-section" 
