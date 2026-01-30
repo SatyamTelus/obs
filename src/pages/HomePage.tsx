@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { Row, Col, Typography, Card, Carousel, Button, Space } from 'antd';
+import { Row, Col, Typography, Card, Carousel, Button, Space, Tag } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
-import { ArrowRightOutlined, EnvironmentOutlined, TeamOutlined, SafetyOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { ArrowRightOutlined, EnvironmentOutlined, TeamOutlined, SafetyOutlined, LeftOutlined, RightOutlined, CalendarOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/components/HomePage.less';
@@ -13,6 +13,10 @@ import groupMountain from '../assets/treks/spiti/group-mountain.png';
 import groupBackpack from '../assets/treks/yulla/group-backpack.png';
 import yullaPanorama1 from '../assets/cover-gen-min.png';
 
+// Import trek images for featured cards
+import sandakphuImg from '../assets/treks/sandakhpu/sandakhpu.jpg';
+import brahmatalImg from '../assets/treks/bhramtal/bhramtal.jpg';
+
 const { Title, Paragraph } = Typography;
 
 const HomePage: React.FC = () => {
@@ -20,6 +24,35 @@ const HomePage: React.FC = () => {
   const carouselRef = useRef<CarouselRef>(null);
   const navigate = useNavigate();
 
+  // Featured treks data
+  const featuredTreks = [
+    {
+      id: 'sandakphu',
+      title: 'Sandakphu-Phalut Trek',
+      subtitle: 'See 4 of World\'s Tallest Peaks!',
+      date: 'February 14-20, 2026',
+      duration: '7 Days',
+      location: 'West Bengal-Nepal Border',
+      price: '₹13,545',
+      priceNote: 'incl. GST',
+      image: sandakphuImg,
+      highlights: ['Everest, Lhotse, Makalu, Kanchenjunga views', 'Walk along India-Nepal border', 'Sleeping Buddha formation'],
+      color: '#1e3a8a'
+    },
+    {
+      id: 'brahmatal',
+      title: 'Brahmatal Trek',
+      subtitle: 'Frozen Lake Adventure!',
+      date: 'March 26-31, 2026',
+      duration: '6 Days / 5 Nights',
+      location: 'Garhwal Himalayas, Uttarakhand',
+      price: '₹13,300',
+      priceNote: 'with transport',
+      image: brahmatalImg,
+      highlights: ['Frozen Brahmatal Lake', '180° Himalayan views', 'Snow-covered forests'],
+      color: '#0891b2'
+    }
+  ];
 
   const carouselImages = [
     {
@@ -91,102 +124,73 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Featured Trek Section */}
-      <div className="kuari-coming-soon" style={{ 
-        padding: '40px 24px', 
-        maxWidth: '1200px', 
-        margin: '0 auto',
-        textAlign: 'center'
-      }}>
-        <Card 
-          style={{ 
-            background: isDarkMode 
-              ? 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)' 
-              : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
-            border: isDarkMode ? '2px solid #404040' : '2px solid #1e3a8a',
-            borderRadius: '16px',
-            boxShadow: isDarkMode 
-              ? '0 8px 32px rgba(0,0,0,0.3)' 
-              : '0 8px 32px rgba(30, 58, 138, 0.15)',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          <div style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            width: '12px',
-            height: '12px',
-            borderRadius: '50%',
-            background: '#ff4d4f',
-            animation: 'blink 1.5s infinite',
-            boxShadow: '0 0 10px #ff4d4f'
-          }} />
-          
-          <Space direction="vertical" size="large" style={{ width: '100%' }}>
-            <div>
-              <Title 
-                level={2} 
-                style={{ 
-                  margin: 0,
-                  color: isDarkMode ? '#e5e5e5' : '#1e3a8a',
-                  textShadow: isDarkMode ? '0 2px 4px rgba(0,0,0,0.5)' : '0 2px 4px rgba(0,0,0,0.1)'
-                }}
+      {/* Featured Treks Section */}
+      <div className="featured-treks-section">
+        <Title level={2} className={`section-title ${isDarkMode ? 'dark-mode' : ''}`}>
+          🏔️ Upcoming Treks
+        </Title>
+        <Row gutter={[24, 24]}>
+          {featuredTreks.map((trek) => (
+            <Col xs={24} md={12} key={trek.id}>
+              <Card 
+                hoverable
+                className={`featured-trek-card ${isDarkMode ? 'dark-mode' : ''}`}
+                cover={
+                  <div className="featured-trek-image-container">
+                    <img 
+                      alt={trek.title} 
+                      src={trek.image} 
+                      className="featured-trek-image"
+                    />
+                    <div className="featured-trek-overlay">
+                      <Tag color="#ff4d4f" className="live-tag">
+                        <span className="live-dot" /> UPCOMING
+                      </Tag>
+                    </div>
+                  </div>
+                }
               >
-                🏔️ Brahmatal Trek - Frozen Lake Adventure!
-              </Title>
-              <Paragraph 
-                style={{ 
-                  fontSize: '18px',
-                  margin: '8px 0 0 0',
-                  color: isDarkMode ? '#a3a3a3' : '#dc2626',
-                  fontWeight: '600'
-                }}
-              >
-                March 26-31, 2026 • Frozen Alpine Lake & Himalayan Views
-              </Paragraph>
-            </div>
-            
-            <Paragraph 
-              style={{ 
-                fontSize: '16px',
-                color: isDarkMode ? '#d4d4d4' : '#374151',
-                maxWidth: '600px',
-                margin: '0 auto',
-                lineHeight: '1.6'
-              }}
-            >
-              Join us for an enchanting winter trek to the frozen Brahmatal Lake! Experience stunning 180° 
-              Himalayan views, snow-covered oak & rhododendron forests, golden sunsets, and camping under 
-              star-filled skies.
-            </Paragraph>
-            
-            <Button 
-              type="primary" 
-              size="large"
-              icon={<ArrowRightOutlined />}
-              onClick={() => navigate('/upcoming')}
-              className="hero-button"
-              style={{ 
-                height: '50px',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
-              }}
-            >
-              Get Details & Book Now
-            </Button>
-          </Space>
-        </Card>
+                <div className="featured-trek-content">
+                  <Title level={3} className="featured-trek-title">
+                    {trek.title}
+                  </Title>
+                  <Paragraph className="featured-trek-subtitle">
+                    {trek.subtitle}
+                  </Paragraph>
+                  
+                  <Space wrap className="featured-trek-tags">
+                    <Tag icon={<CalendarOutlined />} color="blue">{trek.date}</Tag>
+                    <Tag icon={<ClockCircleOutlined />} color="green">{trek.duration}</Tag>
+                  </Space>
+                  
+                  <div className="featured-trek-location">
+                    <EnvironmentOutlined /> {trek.location}
+                  </div>
+                  
+                  <ul className="featured-trek-highlights">
+                    {trek.highlights.map((h, i) => (
+                      <li key={i}>{h}</li>
+                    ))}
+                  </ul>
+                  
+                  <div className="featured-trek-footer">
+                    <div className="featured-trek-price">
+                      <span className="price">{trek.price}</span>
+                      <span className="price-note">{trek.priceNote}</span>
+                    </div>
+                    <Button 
+                      type="primary" 
+                      icon={<ArrowRightOutlined />}
+                      onClick={() => navigate('/upcoming')}
+                    >
+                      View Details
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       </div>
 
       {/* About OBS Section */}
@@ -212,6 +216,69 @@ const HomePage: React.FC = () => {
                 className="youtube-short-iframe"
               />
             </div>
+          </Col>
+        </Row>
+      </div>
+
+      {/* Trek Highlights Video Section */}
+      <div className={`trek-highlights-section ${isDarkMode ? 'dark-mode' : ''}`}>
+        <Title level={2} className={`section-title ${isDarkMode ? 'dark-mode' : ''}`}>
+          🎬 Trek Highlights
+        </Title>
+        <Paragraph className={`section-subtitle ${isDarkMode ? 'dark-mode' : ''}`}>
+          Experience the magic of our adventures through these highlight videos
+        </Paragraph>
+        <Row gutter={[24, 24]}>
+          <Col xs={24} md={12} lg={8}>
+            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
+              <div className="video-wrapper-responsive">
+                <iframe
+                  src="https://www.youtube.com/embed/DGmrc1FvoNo"
+                  title="OBS Trek Highlights"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-info">
+                <Title level={5}>OBS Experience Highlights</Title>
+                <Paragraph>A glimpse into our adventures</Paragraph>
+              </div>
+            </Card>
+          </Col>
+          <Col xs={24} md={12} lg={8}>
+            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
+              <div className="video-wrapper-responsive">
+                <iframe
+                  src="https://www.youtube.com/embed/UCvyTOgNr8M"
+                  title="OBS Short"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-info">
+                <Title level={5}>Why OBS?</Title>
+                <Paragraph>What makes us different</Paragraph>
+              </div>
+            </Card>
+          </Col>
+          <Col xs={24} md={12} lg={8}>
+            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
+              <div className="video-wrapper-responsive">
+                <iframe
+                  src="https://www.youtube.com/embed/PLG-M8U1-6Y"
+                  title="OBS Origin Story"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-info">
+                <Title level={5}>The OBS Origin</Title>
+                <Paragraph>How it all started</Paragraph>
+              </div>
+            </Card>
           </Col>
         </Row>
       </div>

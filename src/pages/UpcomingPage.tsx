@@ -5,7 +5,6 @@ import { CalendarOutlined, EnvironmentOutlined, ClockCircleOutlined, WalletOutli
 import { useDarkMode } from '../contexts/DarkModeContext';
 import BookingModal from '../components/BookingModal';
 import { brahmatalData } from '../assets/treks/bhramtal/BrahmatalData';
-import { kedarkanthaData } from '../assets/treks/kedarkantha/KedarkanthaData';
 import { sandakphuData } from '../assets/treks/sandakhpu/SandakphuData';
 import type { TrekData } from '../assets/treks/TrekData';
 import '../styles/components/HeroSection.less';
@@ -13,7 +12,6 @@ import '../styles/components/UpcomingPage.less';
 import '../styles/components/CarouselCustom.less';
 import '../styles/components/TrekTabs.less';
 import grasslandMountain from '../assets/treks/yulla/grassland-mountain.jpg';
-import kedarkanthaHero from '../assets/treks/kedarkantha/kedarkantha.jpg';
 import brahmatalHero from '../assets/treks/bhramtal/bhramtal.jpg';
 import sandakphuHero from '../assets/treks/sandakhpu/sandakhpu.jpg';
 
@@ -21,7 +19,6 @@ const { Title, Paragraph, Text } = Typography;
 
 // All available treks
 const allTreks: TrekData[] = [
-  kedarkanthaData,
   sandakphuData,
   brahmatalData
 ];
@@ -93,8 +90,6 @@ const UpcomingPage: React.FC = () => {
   // Get hero image based on selected trek
   const getHeroImage = () => {
     switch (selectedTrek.id) {
-      case 'kedarkantha':
-        return kedarkanthaHero;
       case 'brahmatal':
         return brahmatalHero;
       case 'sandakphu':
