@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     {
       key: '/upcoming',
       icon: <CalendarOutlined />,
-      label: 'Upcoming Experiences',
+      label: 'Upcoming Treks',
     },
     {
       key: '/diaries',
@@ -51,9 +51,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <AntLayout className="layout-container">
       <Header className={`layout-header ${isDarkMode ? 'dark' : 'light'}`}>
         <div className="logo-container" onClick={() => navigate('/')}>
-          <img
-            src={obsLogo}
-            alt="Oh-Bhaisahab Experiences Logo"
+          <img 
+            src={obsLogo} 
+            alt="Oh-Bhaisahab Experiences Logo" 
             className="logo-image"
           />
           <Title level={3} className={`logo-title ${isDarkMode ? 'dark-mode' : ''}`}>

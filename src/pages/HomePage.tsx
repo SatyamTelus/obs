@@ -1,21 +1,21 @@
 import React, { useRef } from 'react';
-import { Row, Col, Typography, Card, Carousel, Button, Space, Tag, Rate, Avatar } from 'antd';
+import { Row, Col, Typography, Card, Carousel, Button, Space, Tag } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 import { ArrowRightOutlined, EnvironmentOutlined, TeamOutlined, SafetyOutlined, LeftOutlined, RightOutlined, CalendarOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/components/HomePage.less';
 
-
+// Import images
 import kuariRanges from '../assets/treks/kuari/kuari-ranges.png';
 import groupSummit from '../assets/treks/yulla/group-summit.png';
 import groupMountain from '../assets/treks/spiti/group-mountain.png';
 import groupBackpack from '../assets/treks/yulla/group-backpack.png';
 import yullaPanorama1 from '../assets/cover-gen-min.png';
-import tejasviTestimonial from '../assets/testimonials/tejasvi.jpg';
-import pranathiTestimonial from '../assets/testimonials/pranathi.jpg';
 
-import { featuredTreks } from '../utils/treksData';
+// Import trek images for featured cards
+import sandakphuImg from '../assets/treks/sandakhpu/sandakhpu.jpg';
+import brahmatalImg from '../assets/treks/bhramtal/bhramtal.jpg';
 
 const { Title, Paragraph } = Typography;
 
@@ -24,8 +24,36 @@ const HomePage: React.FC = () => {
   const carouselRef = useRef<CarouselRef>(null);
   const navigate = useNavigate();
 
-  
-  
+  // Featured treks data
+  const featuredTreks = [
+    {
+      id: 'sandakphu',
+      title: 'Sandakphu-Phalut Trek',
+      subtitle: 'See 4 of World\'s Tallest Peaks!',
+      date: 'February 14-20, 2026',
+      duration: '7 Days',
+      location: 'West Bengal-Nepal Border',
+      price: '₹13,545',
+      priceNote: 'incl. GST',
+      image: sandakphuImg,
+      highlights: ['Everest, Lhotse, Makalu, Kanchenjunga views', 'Walk along India-Nepal border', 'Sleeping Buddha formation'],
+      color: '#1e3a8a'
+    },
+    {
+      id: 'brahmatal',
+      title: 'Brahmatal Trek',
+      subtitle: 'Frozen Lake Adventure!',
+      date: 'March 26-31, 2026',
+      duration: '6 Days / 5 Nights',
+      location: 'Garhwal Himalayas, Uttarakhand',
+      price: '₹13,300',
+      priceNote: 'with transport',
+      image: brahmatalImg,
+      highlights: ['Frozen Brahmatal Lake', '180° Himalayan views', 'Snow-covered forests'],
+      color: '#0891b2'
+    }
+  ];
+
   const carouselImages = [
     {
       src: kuariRanges,
@@ -73,39 +101,6 @@ const HomePage: React.FC = () => {
     }
   ];
 
-  const homepageReviews = [
-    {
-      id: 1,
-      name: 'Pranathi Punjaala',
-      location: 'Hyderabad',
-      experience: 'Yulla Kanda Trek',
-      rating: 5,
-      review:
-        "This OBS experience introduced me to a different version of myself and expanded my comfort zone. It helped me realize my capabilities and the importance of finding like-minded people. Most importantly, it taught me self-compassion.",
-      image: pranathiTestimonial,
-    },
-    {
-      id: 2,
-      name: 'Dr. Sonali Gupta',
-      location: 'Delhi',
-      experience: 'Spiti Valley Adventure',
-      rating: 5,
-      review:
-        "Every step on those trails gave me joy, strength, and beautiful memories. Strangers turned into friends, creating moments I'll always cherish. My heart is full.",
-      image: undefined,
-    },
-    {
-      id: 3,
-      name: 'Satyam Bajpai',
-      location: 'Gwalior',
-      experience: 'Yulla Kanda Trek',
-      rating: 5,
-      review:
-        "Reaching the world's highest Krishna temple was life-changing. OBS made it more than just a trek – it was a journey of self-discovery.",
-      image: tejasviTestimonial,
-    },
-  ];
-
   return (
     <div className={`homepage-container ${isDarkMode ? 'dark-mode' : ''}`}>
       {/* Hero Section */}
@@ -132,7 +127,7 @@ const HomePage: React.FC = () => {
       {/* Featured Treks Section */}
       <div className="featured-treks-section">
         <Title level={2} className={`section-title ${isDarkMode ? 'dark-mode' : ''}`}>
-          🏔️ Upcoming Experiences
+          🏔️ Upcoming Treks
         </Title>
         <Row gutter={[24, 24]}>
           {featuredTreks.map((trek) => (
@@ -186,11 +181,7 @@ const HomePage: React.FC = () => {
                     <Button 
                       type="primary" 
                       icon={<ArrowRightOutlined />}
-                      onClick={() => {
-                        window.scrollTo(0, 0);
-                        navigate(`/upcoming/${trek.id}`);
-                      }}
-                      
+                      onClick={() => navigate('/upcoming')}
                     >
                       View Details
                     </Button>
@@ -242,6 +233,23 @@ const HomePage: React.FC = () => {
             <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
               <div className="video-wrapper-responsive">
                 <iframe
+                  src="https://www.youtube.com/embed/DGmrc1FvoNo"
+                  title="OBS Trek Highlights"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-info">
+                <Title level={5}>OBS Experience Highlights</Title>
+                <Paragraph>A glimpse into our adventures</Paragraph>
+              </div>
+            </Card>
+          </Col>
+          <Col xs={24} md={12} lg={8}>
+            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
+              <div className="video-wrapper-responsive">
+                <iframe
                   src="https://www.youtube.com/embed/UCvyTOgNr8M"
                   title="OBS Short"
                   frameBorder="0"
@@ -272,60 +280,6 @@ const HomePage: React.FC = () => {
               </div>
             </Card>
           </Col>
-          <Col xs={24} md={12} lg={8}>
-            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
-              <div className="video-wrapper-responsive">
-                <iframe
-                  src="https://www.youtube.com/embed/DGmrc1FvoNo"
-                  title="OBS Trek Experience"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              <div className="video-info">
-                <Title level={5}>OBS Trek Experience</Title>
-                <Paragraph>Feel the vibe of our treks</Paragraph>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-      </div>
-
-      {/* Reviews Highlight Section */}
-      <div className={`reviews-highlight-section ${isDarkMode ? 'dark-mode' : ''}`}>
-        <Title level={2} className={`section-title ${isDarkMode ? 'dark-mode' : ''}`}>
-          💬 What Our Trekkers Say
-        </Title>
-        <Paragraph className={`section-subtitle ${isDarkMode ? 'dark-mode' : ''}`}>
-          A few real words from humans whose lives got a little brighter with OBS.
-        </Paragraph>
-        <Row gutter={[24, 24]} justify="center">
-          {homepageReviews.map((review) => (
-            <Col xs={24} md={12} lg={8} key={review.id}>
-              <Card className="review-card fade-in-up" bordered={false}>
-                <div className="review-header">
-                  <Avatar
-                    src={review.image}
-                    alt={review.name}
-                    size={48}
-                  />
-                  <div className="review-meta">
-                    <span className="review-name">{review.name}</span>
-                    <span className="review-location">
-                      {review.location} • {review.experience}
-                    </span>
-                  </div>
-                </div>
-                <div className="review-rating">
-                  <Rate disabled defaultValue={review.rating} />
-                </div>
-                <Paragraph className="review-text">
-                  “{review.review}”
-                </Paragraph>
-              </Card>
-            </Col>
-          ))}
         </Row>
       </div>
 
@@ -462,5 +416,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-
-
