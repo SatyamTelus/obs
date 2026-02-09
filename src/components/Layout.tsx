@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     {
       key: '/upcoming',
       icon: <CalendarOutlined />,
-      label: 'Upcoming Treks',
+      label: 'Upcoming Experiences',
     },
     {
       key: '/diaries',
