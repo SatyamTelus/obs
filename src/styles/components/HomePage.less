@@ -54,6 +54,10 @@
   padding: 60px 24px;
   max-width: 1200px;
   margin: 0 auto;
+  .ant-row {
+    justify-content: center;
+  }
+
 
   .section-title {
     text-align: center;
@@ -84,14 +88,16 @@
 
   .featured-trek-image-container {
     position: relative;
-    height: 220px;
+    width: 100%;
+    max-height: 260px;
     overflow: hidden;
 
     .featured-trek-image {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       transition: transform 0.3s ease;
+      display: block;
     }
 
     .featured-trek-overlay {
@@ -293,6 +299,105 @@
   }
 }
 
+// Reviews Highlight Section
+.reviews-highlight-section {
+  padding: 80px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #fff7e6 0%, #fef3c7 40%, #f5f5f5 100%);
+
+  &.dark-mode {
+    background: linear-gradient(135deg, #020617 0%, #0b1120 40%, #020617 100%);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 8px;
+
+    &.dark-mode {
+      color: #e5e5e5;
+    }
+  }
+
+  .section-subtitle {
+    text-align: center;
+    margin-bottom: 32px;
+    color: #666;
+    font-size: 16px;
+
+    &.dark-mode {
+      color: #a3a3a3;
+    }
+  }
+
+  .review-card {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+
+    &.dark-mode {
+      background: rgba(26, 26, 26, 0.95);
+      border-color: rgba(212, 165, 116, 0.35);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+
+      .review-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .review-name {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .review-location {
+        font-size: 13px;
+        color: #888;
+      }
+    }
+
+    .review-rating {
+      margin-bottom: 8px;
+
+      .ant-rate {
+        font-size: 16px;
+        color: @primary-color;
+      }
+    }
+
+    .review-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 0;
+    }
+  }
+
+  &.dark-mode {
+    .review-card {
+      .review-location {
+        color: #a3a3a3;
+      }
+
+      .review-text {
+        color: #d4d4d4;
+      }
+    }
+  }
+}
+
 // Mobile responsive
 @media (max-width: 768px) {
   .featured-treks-section {
@@ -305,7 +410,7 @@
 
   .featured-trek-card {
     .featured-trek-image-container {
-      height: 180px;
+      max-height: 200px;
     }
 
     .featured-trek-content {
