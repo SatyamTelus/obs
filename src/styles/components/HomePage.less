@@ -51,14 +51,19 @@
 
 // Featured Treks Section
 .featured-treks-section {
+
   padding: 30px 24px 60px;
+
+  padding: 60px 24px;
+
   max-width: 1200px;
   margin: 0 auto;
 
   .section-title {
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 28px;
+    <<<<<<< HEAD margin-bottom: 40px;
+    =======margin-bottom: 16px;
+    >>>>>>>5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix) font-size: 28px;
 
     &.dark-mode {
       color: #e5e5e5;
@@ -84,15 +89,16 @@
 
   .featured-trek-image-container {
     position: relative;
-    height: 300px;
-    overflow: hidden;
+    <<<<<<< HEAD height: 300px;
+    =======height: 220px;
+    >>>>>>>5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix) overflow: hidden;
 
     .featured-trek-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      transition: transform 0.3s ease;
+      <<<<<<< HEAD object-position: center;
+      =======>>>>>>>5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix) transition: transform 0.3s ease;
     }
 
     .featured-trek-overlay {
@@ -122,7 +128,8 @@
     transform: scale(1.05);
   }
 
-  // Single trek horizontal layout
+  <<<<<<< HEAD // Single trek horizontal layout
+
   &.featured-trek-card-single {
     .ant-card-body {
       padding: 0;
@@ -154,7 +161,7 @@
     }
   }
 
-  .featured-trek-content {
+  =======>>>>>>>5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix) .featured-trek-content {
     padding: 8px 0;
 
     .featured-trek-title {
@@ -236,15 +243,103 @@
 }
 
 @keyframes blink {
-  0%, 50%, 100% {
+
+  0%,
+  50%,
+  100% {
     opacity: 1;
   }
-  25%, 75% {
+
+  25%,
+  75% {
     opacity: 0.4;
   }
 }
 
-// Mobile responsive
+<<<<<<< HEAD======= // Trek Highlights Video Section
+
+.trek-highlights-section {
+  padding: 60px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: @light-section-bg-alt;
+
+  &.dark-mode {
+    background: @dark-section-bg-alt;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 8px;
+
+    &.dark-mode {
+      color: #e5e5e5;
+    }
+  }
+
+  .section-subtitle {
+    text-align: center;
+    margin-bottom: 32px;
+    color: #666;
+    font-size: 16px;
+
+    &.dark-mode {
+      color: #a3a3a3;
+    }
+  }
+}
+
+.video-card {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  &.dark-mode {
+    background: #1a1a1a;
+    border-color: #404040;
+  }
+
+  .video-wrapper-responsive {
+    position: relative;
+    padding-top: 56.25%; // 16:9 aspect ratio
+    width: 100%;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  .video-info {
+    padding: 16px;
+
+    h5 {
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  &.dark-mode .video-info p {
+    color: #a3a3a3;
+  }
+}
+
+>>>>>>>5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix) // Mobile responsive
 @media (max-width: 768px) {
   .featured-treks-section {
     padding: 40px 16px;
@@ -275,6 +370,12 @@
       }
     }
   }
+
+  <<<<<<< HEAD=======.trek-highlights-section {
+    padding: 40px 16px;
+  }
+
+  >>>>>>>5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix)
 }
 
 @media (max-width: 480px) {
@@ -297,6 +398,16 @@
       }
     }
   }
+
+  <<<<<<< HEAD=======.trek-highlights-section {
+    padding: 32px 12px;
+
+    .section-subtitle {
+      font-size: 14px;
+    }
+  }
+
+  >>>>>>>5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix)
 }
 
 // About OBS Section
@@ -314,16 +425,16 @@
   // Mobile responsive adjustments
   @media (max-width: 768px) {
     padding: 60px 16px;
-    
+
     .about-paragraph {
       font-size: 15px;
       line-height: 1.6;
     }
   }
-  
+
   @media (max-width: 480px) {
     padding: 40px 12px;
-    
+
     .about-paragraph {
       font-size: 14px;
       line-height: 1.5;
@@ -356,7 +467,7 @@
   @media (max-width: 768px) {
     height: 300px;
   }
-  
+
   @media (max-width: 480px) {
     height: 250px;
   }
@@ -388,11 +499,11 @@
   // Mobile responsive adjustments
   @media (max-width: 768px) {
     height: 250px;
-    
+
     .carousel-image {
       height: 250px;
     }
-    
+
     .nav-button-left,
     .nav-button-right {
       width: 32px;
@@ -400,14 +511,14 @@
       font-size: 14px;
     }
   }
-  
+
   @media (max-width: 480px) {
     height: 200px;
-    
+
     .carousel-image {
       height: 200px;
     }
-    
+
     .nav-button-left,
     .nav-button-right {
       width: 28px;
@@ -472,7 +583,7 @@
     gap: 32px;
     align-items: stretch; // Make children stretch to match heights
     min-height: 600px; // Minimum height to ensure video has enough space
-    
+
     @media (max-width: 1024px) {
       flex-direction: column-reverse; // Activities first, then video
       gap: 24px;
@@ -487,13 +598,13 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    
+
     .video-container {
       width: 100%;
       height: 300px; // Fixed height for video
       display: flex;
       align-items: center;
-      
+
       .video-wrapper {
         position: relative;
         width: 100%;
@@ -519,14 +630,14 @@
         }
       }
     }
-    
+
     // Mobile responsive adjustments
     @media (max-width: 768px) {
       .video-container {
         height: 250px;
       }
     }
-    
+
     @media (max-width: 480px) {
       .video-container {
         height: 200px;
@@ -540,20 +651,20 @@
     min-width: 0; // Prevents flex item from overflowing
     display: flex;
     flex-direction: column;
-    
+
     .activities-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 16px;
       height: 100%;
-      
+
       @media (max-width: 576px) {
         grid-template-columns: 1fr;
       }
-      
+
       .activity-item {
         display: flex;
-        
+
         .activity-card {
           width: 100%;
           height: 100%;
@@ -567,11 +678,11 @@
   // Mobile responsive adjustments
   @media (max-width: 768px) {
     padding: 60px 16px;
-    
+
     .section-title {
       margin-bottom: 32px;
     }
-    
+
     .activity-card {
       margin-bottom: 16px;
     }
@@ -579,7 +690,7 @@
     .activities-flex-container {
       gap: 20px;
     }
-    
+
     .activities-secondary {
       margin-bottom: 32px; // Add space between activities and video
     }
@@ -592,14 +703,14 @@
       }
     }
   }
-  
+
   @media (max-width: 480px) {
     padding: 40px 12px;
-    
+
     .section-title {
       margin-bottom: 24px;
     }
-    
+
     .activity-card {
       margin-bottom: 12px;
     }
@@ -607,7 +718,7 @@
     .activities-flex-container {
       gap: 16px;
     }
-    
+
     .activities-secondary {
       margin-bottom: 24px; // Smaller space on mobile
     }

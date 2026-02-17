@@ -11,12 +11,68 @@ import yullaPanorama1 from '../assets/cover-gen-min.png';
 // Import data from utility file
 import { featuredTreks, carouselImages } from '../utils/HomePageData';
 
+// Import trek images for featured cards
+import sandakphuImg from '../assets/treks/sandakhpu/sandakhpu.jpg';
+import brahmatalImg from '../assets/treks/bhramtal/bhramtal.jpg';
+
 const { Title, Paragraph } = Typography;
 
 const HomePage: React.FC = () => {
   const { isDarkMode } = useDarkMode();
   const carouselRef = useRef<CarouselRef>(null);
   const navigate = useNavigate();
+
+
+
+  // Featured treks data
+  const featuredTreks = [
+    {
+      id: 'sandakphu',
+      title: 'Sandakphu-Phalut Trek',
+      subtitle: 'See 4 of World\'s Tallest Peaks!',
+      date: 'February 14-20, 2026',
+      duration: '7 Days',
+      location: 'West Bengal-Nepal Border',
+      price: '₹13,545',
+      priceNote: 'incl. GST',
+      image: sandakphuImg,
+      highlights: ['Everest, Lhotse, Makalu, Kanchenjunga views', 'Walk along India-Nepal border', 'Sleeping Buddha formation'],
+      color: '#1e3a8a'
+    },
+    {
+      id: 'brahmatal',
+      title: 'Brahmatal Trek',
+      subtitle: 'Frozen Lake Adventure!',
+      date: 'March 26-31, 2026',
+      duration: '6 Days / 5 Nights',
+      location: 'Garhwal Himalayas, Uttarakhand',
+      price: '₹13,300',
+      priceNote: 'with transport',
+      image: brahmatalImg,
+      highlights: ['Frozen Brahmatal Lake', '180° Himalayan views', 'Snow-covered forests'],
+      color: '#0891b2'
+    }
+  ];
+
+  const carouselImages = [
+    {
+      src: kuariRanges,
+      alt: 'Kuari Pass Trek'
+    },
+    {
+      src: groupSummit,
+      alt: 'Yulla Kanda Trek'
+    },
+    {
+      src: groupMountain,
+      alt: 'Spiti Valley'
+    },
+    {
+      src: groupBackpack,
+      alt: 'Yulla Kanda Trek Group with Backpack'
+    }
+  ];
+
 
   const signatureActivities = [
     {
@@ -49,21 +105,21 @@ const HomePage: React.FC = () => {
   return (
     <div className={`homepage-container ${isDarkMode ? 'dark-mode' : ''}`}>
       {/* Hero Section */}
-      <div 
-        className="hero-section" 
+      <div
+        className="hero-section"
         style={{ backgroundImage: `url(${yullaPanorama1})` }}
       >
         {/* Overlay for text readability */}
         <div className="hero-overlay" />
-        
+
         {/* Content with higher z-index */}
         <div className="hero-content">
           <Title level={1} className="hero-title">
             Welcome to Oh-Bhaisahab Experiences
           </Title>
           <Paragraph className="hero-paragraph">
-            Embark on unforgettable adventures in the heart of the Himalayas. 
-            We specialize in creating authentic trekking and adventure experiences 
+            Embark on unforgettable adventures in the heart of the Himalayas.
+            We specialize in creating authentic trekking and adventure experiences
             that connect you with nature and challenge your limits.
           </Paragraph>
         </div>
@@ -72,177 +128,309 @@ const HomePage: React.FC = () => {
       {/* Featured Treks Section */}
       <div className="featured-treks-section">
         <Title level={2} className={`section-title ${isDarkMode ? 'dark-mode' : ''}`}>
+<<<<<<< HEAD
           🏔️ Upcoming Experiences
-        </Title>
-        {featuredTreks.length === 1 ? (
-          // Single trek layout: image left, content right
-          <Row gutter={[24, 24]} justify="center">
-            <Col xs={24} lg={20} xl={18}>
-              <Card 
-                hoverable
-                className={`featured-trek-card featured-trek-card-single ${isDarkMode ? 'dark-mode' : ''}`}
-                bodyStyle={{ padding: 0 }}
-              >
-                <Row gutter={[0, 0]}>
-                  <Col xs={24} lg={12}>
-                    <div className="featured-trek-image-container">
-                      <img 
-                        alt={featuredTreks[0].title} 
-                        src={featuredTreks[0].image} 
-                        className="featured-trek-image"
-                      />
-                      <div className="featured-trek-overlay">
-                        <Tag color="#ff4d4f" className="live-tag">
-                          <span className="live-dot" /> UPCOMING
-                        </Tag>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col xs={24} lg={12}>
-                    <div className="featured-trek-content">
-                      <Title level={3} className="featured-trek-title">
-                        {featuredTreks[0].title}
-                      </Title>
-                      <Paragraph className="featured-trek-subtitle">
-                        {featuredTreks[0].subtitle}
-                      </Paragraph>
-                      
-                      <Space wrap className="featured-trek-tags">
-                        <Tag icon={<CalendarOutlined />} color="blue">{featuredTreks[0].date}</Tag>
-                        <Tag icon={<ClockCircleOutlined />} color="green">{featuredTreks[0].duration}</Tag>
-                      </Space>
-                      
-                      <div className="featured-trek-location">
-                        <EnvironmentOutlined /> {featuredTreks[0].location}
-                      </div>
-                      
-                      <ul className="featured-trek-highlights">
-                        {featuredTreks[0].highlights.map((h, i) => (
-                          <li key={i}>{h}</li>
-                        ))}
-                      </ul>
-                      
-                      <div className="featured-trek-footer">
-                        <div className="featured-trek-price">
-                          <span className="price">{featuredTreks[0].price}</span>
-                          <span className="price-note">{featuredTreks[0].priceNote}</span>
-                        </div>
-                        <Button 
-                          type="primary" 
-                          icon={<ArrowRightOutlined />}
-                          onClick={() => {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                            navigate(`/upcoming?trek=${featuredTreks[0].id}`);
-                          }}
-                        >
-                          View Details
-                        </Button>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Card>
+        </Title >
+{
+  featuredTreks.length === 1 ? (
+    // Single trek layout: image left, content right
+    <Row gutter={[24, 24]} justify="center">
+      <Col xs={24} lg={20} xl={18}>
+        <Card
+          hoverable
+          className={`featured-trek-card featured-trek-card-single ${isDarkMode ? 'dark-mode' : ''}`}
+          bodyStyle={{ padding: 0 }}
+        >
+          <Row gutter={[0, 0]}>
+            <Col xs={24} lg={12}>
+              <div className="featured-trek-image-container">
+                <img
+                  alt={featuredTreks[0].title}
+                  src={featuredTreks[0].image}
+                  className="featured-trek-image"
+                />
+                <div className="featured-trek-overlay">
+                  <Tag color="#ff4d4f" className="live-tag">
+                    <span className="live-dot" /> UPCOMING
+                  </Tag>
+                </div>
+              </div>
+            </Col>
+            <Col xs={24} lg={12}>
+              <div className="featured-trek-content">
+                <Title level={3} className="featured-trek-title">
+                  {featuredTreks[0].title}
+                </Title>
+                <Paragraph className="featured-trek-subtitle">
+                  {featuredTreks[0].subtitle}
+                </Paragraph>
+
+                <Space wrap className="featured-trek-tags">
+                  <Tag icon={<CalendarOutlined />} color="blue">{featuredTreks[0].date}</Tag>
+                  <Tag icon={<ClockCircleOutlined />} color="green">{featuredTreks[0].duration}</Tag>
+                </Space>
+
+                <div className="featured-trek-location">
+                  <EnvironmentOutlined /> {featuredTreks[0].location}
+                </div>
+
+                <ul className="featured-trek-highlights">
+                  {featuredTreks[0].highlights.map((h, i) => (
+                    <li key={i}>{h}</li>
+                  ))}
+                </ul>
+
+                <div className="featured-trek-footer">
+                  <div className="featured-trek-price">
+                    <span className="price">{featuredTreks[0].price}</span>
+                    <span className="price-note">{featuredTreks[0].priceNote}</span>
+                  </div>
+                  <Button
+                    type="primary"
+                    icon={<ArrowRightOutlined />}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      navigate(`/upcoming?trek=${featuredTreks[0].id}`);
+                    }}
+                  >
+                    View Details
+                  </Button>
+                </div>
+              </div>
             </Col>
           </Row>
-        ) : (
-          // Multiple treks layout: grid
-          <Row gutter={[24, 24]}>
-            {featuredTreks.map((trek) => (
-              <Col xs={24} md={12} key={trek.id}>
-                <Card 
-                  hoverable
-                  className={`featured-trek-card ${isDarkMode ? 'dark-mode' : ''}`}
-                  cover={
-                    <div className="featured-trek-image-container">
-                      <img 
-                        alt={trek.title} 
-                        src={trek.image} 
-                        className="featured-trek-image"
-                      />
-                      <div className="featured-trek-overlay">
-                        <Tag color="#ff4d4f" className="live-tag">
-                          <span className="live-dot" /> UPCOMING
-                        </Tag>
-                      </div>
-                    </div>
-                  }
+        </Card>
+      </Col>
+    </Row>
+  ) : (
+    // Multiple treks layout: grid
+    <Row gutter={[24, 24]}>
+      {featuredTreks.map((trek) => (
+        <Col xs={24} md={12} key={trek.id}>
+          <Card
+            hoverable
+            className={`featured-trek-card ${isDarkMode ? 'dark-mode' : ''}`}
+            cover={
+              <div className="featured-trek-image-container">
+                <img
+                  alt={trek.title}
+                  src={trek.image}
+                  className="featured-trek-image"
+                />
+                <div className="featured-trek-overlay">
+                  <Tag color="#ff4d4f" className="live-tag">
+                    <span className="live-dot" /> UPCOMING
+                  </Tag>
+                </div>
+              </div>
+            }
+          >
+            <div className="featured-trek-content">
+              <Title level={3} className="featured-trek-title">
+                {trek.title}
+              </Title>
+              <Paragraph className="featured-trek-subtitle">
+                {trek.subtitle}
+              </Paragraph>
+
+              <Space wrap className="featured-trek-tags">
+                <Tag icon={<CalendarOutlined />} color="blue">{trek.date}</Tag>
+                <Tag icon={<ClockCircleOutlined />} color="green">{trek.duration}</Tag>
+              </Space>
+
+              <div className="featured-trek-location">
+                <EnvironmentOutlined /> {trek.location}
+              </div>
+
+              <ul className="featured-trek-highlights">
+                {trek.highlights.map((h, i) => (
+                  <li key={i}>{h}</li>
+                ))}
+              </ul>
+
+              <div className="featured-trek-footer">
+                <div className="featured-trek-price">
+                  <span className="price">{trek.price}</span>
+                  <span className="price-note">{trek.priceNote}</span>
+                </div>
+                <Button
+                  type="primary"
+                  icon={<ArrowRightOutlined />}
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    navigate(`/upcoming?trek=${trek.id}`);
+                  }}
                 >
-                  <div className="featured-trek-content">
-                    <Title level={3} className="featured-trek-title">
-                      {trek.title}
-                    </Title>
-                    <Paragraph className="featured-trek-subtitle">
-                      {trek.subtitle}
-                    </Paragraph>
-                    
-                    <Space wrap className="featured-trek-tags">
-                      <Tag icon={<CalendarOutlined />} color="blue">{trek.date}</Tag>
-                      <Tag icon={<ClockCircleOutlined />} color="green">{trek.duration}</Tag>
-                    </Space>
-                    
-                    <div className="featured-trek-location">
-                      <EnvironmentOutlined /> {trek.location}
-                    </div>
-                    
-                    <ul className="featured-trek-highlights">
-                      {trek.highlights.map((h, i) => (
-                        <li key={i}>{h}</li>
-                      ))}
-                    </ul>
-                    
-                    <div className="featured-trek-footer">
-                      <div className="featured-trek-price">
-                        <span className="price">{trek.price}</span>
-                        <span className="price-note">{trek.priceNote}</span>
-                      </div>
-                      <Button 
-                        type="primary" 
-                        icon={<ArrowRightOutlined />}
-                        onClick={() => {
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                          navigate(`/upcoming?trek=${trek.id}`);
-                        }}
-                      >
-                        View Details
-                      </Button>
+                  View Details
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  )
+}
+=======
+          🏔️ Upcoming Treks
+        </Title>
+        <Row gutter={[24, 24]}>
+          {featuredTreks.map((trek) => (
+            <Col xs={24} md={12} key={trek.id}>
+              <Card 
+                hoverable
+                className={`featured-trek-card ${isDarkMode ? 'dark-mode' : ''}`}
+                cover={
+                  <div className="featured-trek-image-container">
+                    <img 
+                      alt={trek.title} 
+                      src={trek.image} 
+                      className="featured-trek-image"
+                    />
+                    <div className="featured-trek-overlay">
+                      <Tag color="#ff4d4f" className="live-tag">
+                        <span className="live-dot" /> UPCOMING
+                      </Tag>
                     </div>
                   </div>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        )}
-      </div>
+                }
+              >
+                <div className="featured-trek-content">
+                  <Title level={3} className="featured-trek-title">
+                    {trek.title}
+                  </Title>
+                  <Paragraph className="featured-trek-subtitle">
+                    {trek.subtitle}
+                  </Paragraph>
+                  
+                  <Space wrap className="featured-trek-tags">
+                    <Tag icon={<CalendarOutlined />} color="blue">{trek.date}</Tag>
+                    <Tag icon={<ClockCircleOutlined />} color="green">{trek.duration}</Tag>
+                  </Space>
+                  
+                  <div className="featured-trek-location">
+                    <EnvironmentOutlined /> {trek.location}
+                  </div>
+                  
+                  <ul className="featured-trek-highlights">
+                    {trek.highlights.map((h, i) => (
+                      <li key={i}>{h}</li>
+                    ))}
+                  </ul>
+                  
+                  <div className="featured-trek-footer">
+                    <div className="featured-trek-price">
+                      <span className="price">{trek.price}</span>
+                      <span className="price-note">{trek.priceNote}</span>
+                    </div>
+                    <Button 
+                      type="primary" 
+                      icon={<ArrowRightOutlined />}
+                      onClick={() => navigate('/upcoming')}
+                    >
+                      View Details
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+>>>>>>> 5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix)
+      </div >
 
-      {/* About OBS Section */}
-      <div className="about-section">
-        <Row gutter={[32, 32]} align="middle">
-          <Col xs={24} lg={12}>
-            <Title level={2} className="about-title">About Oh-Bhaisahab Experiences</Title>
-            <Paragraph className="about-paragraph">
-              An Oh-Bhaisahab Experience is your passport to authentic Himalayan adventures. With a unique mix of trekking, fitness challenges, mindful practices, and cultural encounters, we create journeys that inspire both body and soul.
-            </Paragraph>
-            <Paragraph className="about-paragraph">
-              Our aim is simple: to turn strangers into friends, mountains into teachers and every trip into a story worth telling.
-            </Paragraph>
+  {/* About OBS Section */ }
+  < div className = "about-section" >
+    <Row gutter={[32, 32]} align="middle">
+      <Col xs={24} lg={12}>
+        <Title level={2} className="about-title">About Oh-Bhaisahab Experiences</Title>
+        <Paragraph className="about-paragraph">
+          An Oh-Bhaisahab Experience is your passport to authentic Himalayan adventures. With a unique mix of trekking, fitness challenges, mindful practices, and cultural encounters, we create journeys that inspire both body and soul.
+        </Paragraph>
+        <Paragraph className="about-paragraph">
+          Our aim is simple: to turn strangers into friends, mountains into teachers and every trip into a story worth telling.
+        </Paragraph>
+      </Col>
+      <Col xs={24} lg={12}>
+        <div className="youtube-short-container">
+          <iframe
+            src="https://www.youtube.com/embed/UCvyTOgNr8M"
+            title="Oh Bhaisahab Experiences - YouTube Short"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="youtube-short-iframe"
+          />
+        </div>
+      </Col>
+    </Row>
+      </div >
+
+  {/* Trek Highlights Video Section */ }
+  < div className = {`trek-highlights-section ${isDarkMode ? 'dark-mode' : ''}`}>
+        <Title level={2} className={`section-title ${isDarkMode ? 'dark-mode' : ''}`}>
+          🎬 Trek Highlights
+        </Title>
+        <Paragraph className={`section-subtitle ${isDarkMode ? 'dark-mode' : ''}`}>
+          Experience the magic of our adventures through these highlight videos
+        </Paragraph>
+        <Row gutter={[24, 24]}>
+          <Col xs={24} md={12} lg={8}>
+            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
+              <div className="video-wrapper-responsive">
+                <iframe
+                  src="https://www.youtube.com/embed/DGmrc1FvoNo"
+                  title="OBS Trek Highlights"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-info">
+                <Title level={5}>OBS Experience Highlights</Title>
+                <Paragraph>A glimpse into our adventures</Paragraph>
+              </div>
+            </Card>
           </Col>
-          <Col xs={24} lg={12}>
-            <div className="youtube-short-container">
-              <iframe
-                src="https://www.youtube.com/embed/UCvyTOgNr8M"
-                title="Oh Bhaisahab Experiences - YouTube Short"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="youtube-short-iframe"
-              />
-            </div>
+          <Col xs={24} md={12} lg={8}>
+            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
+              <div className="video-wrapper-responsive">
+                <iframe
+                  src="https://www.youtube.com/embed/UCvyTOgNr8M"
+                  title="OBS Short"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-info">
+                <Title level={5}>Why OBS?</Title>
+                <Paragraph>What makes us different</Paragraph>
+              </div>
+            </Card>
+          </Col>
+          <Col xs={24} md={12} lg={8}>
+            <Card className={`video-card ${isDarkMode ? 'dark-mode' : ''}`} bodyStyle={{ padding: 0 }}>
+              <div className="video-wrapper-responsive">
+                <iframe
+                  src="https://www.youtube.com/embed/PLG-M8U1-6Y"
+                  title="OBS Origin Story"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-info">
+                <Title level={5}>The OBS Origin</Title>
+                <Paragraph>How it all started</Paragraph>
+              </div>
+            </Card>
           </Col>
         </Row>
-      </div>
+      </div >
 
-      {/* Signature Activities */}
-      <div className={`content-section ${isDarkMode ? 'dark' : 'light'}`}>
+  {/* Signature Activities */ }
+  < div className = {`content-section ${isDarkMode ? 'dark' : 'light'}`}>
         <Title level={2} className="section-title">
           Our Signature Activities
         </Title>
@@ -323,10 +511,10 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
 
-      {/* Why Choose OBS */}
-      <div className={`content-section ${isDarkMode ? 'dark-alt' : 'light-alt'}`}>
+  {/* Why Choose OBS */ }
+  < div className = {`content-section ${isDarkMode ? 'dark-alt' : 'light-alt'}`}>
         <Title level={2} className="section-title">
           Why Choose Oh-Bhaisahab Experiences?
         </Title>
@@ -368,8 +556,8 @@ const HomePage: React.FC = () => {
             </Card>
           </Col>
         </Row>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 
