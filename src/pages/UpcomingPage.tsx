@@ -6,6 +6,9 @@ import { useSearchParams } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import BookingModal from '../components/BookingModal';
 import { brahmatalData } from '../assets/treks/bhramtal/BrahmatalData';
+
+import { sandakphuData } from '../assets/treks/sandakhpu/SandakphuData';
+
 import type { TrekData } from '../assets/treks/TrekData';
 import '../styles/components/HeroSection.less';
 import '../styles/components/UpcomingPage.less';
@@ -19,8 +22,12 @@ const { Title, Paragraph, Text } = Typography;
 
 // All available treks
 const allTreks: TrekData[] = [
+<<<<<<< HEAD
+=======
+  sandakphuData,
+>>>>>>> 5192cc8 (Homepage updates: featured treks, videos, pricing, menu fix)
   brahmatalData
-  
+
 ];
 
 const UpcomingPage: React.FC = () => {
@@ -30,7 +37,7 @@ const UpcomingPage: React.FC = () => {
   const carouselRef = useRef<CarouselRef>(null);
   const trekContentRef = useRef<HTMLDivElement>(null);
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
-  
+
   // Initialize selected trek from URL parameter or default to first trek
   const getInitialTrek = (): TrekData => {
     const trekId = searchParams.get('trek');
@@ -40,9 +47,9 @@ const UpcomingPage: React.FC = () => {
     }
     return allTreks[0];
   };
-  
+
   const [selectedTrek, setSelectedTrek] = useState<TrekData>(getInitialTrek());
-  
+
   // Update selected trek when URL parameter changes
   useEffect(() => {
     const trekId = searchParams.get('trek');
@@ -69,7 +76,7 @@ const UpcomingPage: React.FC = () => {
       fill="currentColor"
       style={{ marginRight: '8px' }}
     >
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488" />
     </svg>
   );
 
@@ -80,7 +87,7 @@ const UpcomingPage: React.FC = () => {
       window.open(selectedTrek.registrationLink, '_blank');
     } else {
       // Scroll to booking section
-      paymentMessageRef.current?.scrollIntoView({ 
+      paymentMessageRef.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -104,7 +111,7 @@ const UpcomingPage: React.FC = () => {
       setSearchParams({ trek: key });
       // Reset carousel when changing treks
       carouselRef.current?.goTo(0);
-      
+
       // Scroll to trek content only if user is below it
       // This prevents jarring scroll behavior when tabs are already in view
       if (trekContentRef.current) {
@@ -134,9 +141,9 @@ const UpcomingPage: React.FC = () => {
   const tabItems = allTreks.map(trek => ({
     key: trek.id,
     label: (
-      <span style={{ 
-        fontSize: '14px', 
-        fontWeight: selectedTrek.id === trek.id ? 600 : 400 
+      <span style={{
+        fontSize: '14px',
+        fontWeight: selectedTrek.id === trek.id ? 600 : 400
       }}>
         {trek.title.split(' - ')[0]}
       </span>
@@ -145,9 +152,9 @@ const UpcomingPage: React.FC = () => {
 
   return (
     <div className={`upcoming-page-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <div 
-        className="hero-section" 
-        style={{ 
+      <div
+        className="hero-section"
+        style={{
           '--desktop-bg': `url(${grasslandMountain})`,
           '--mobile-bg': `url(${getHeroImage()})`
         } as React.CSSProperties}
@@ -166,7 +173,7 @@ const UpcomingPage: React.FC = () => {
       <div ref={trekContentRef} className="trek-content-container">
         {/* Trek Navigation Tabs */}
         {allTreks.length > 1 && (
-          <Card 
+          <Card
             className={`trek-tabs-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
             bodyStyle={{ padding: '0' }}
           >
@@ -176,7 +183,7 @@ const UpcomingPage: React.FC = () => {
               centered
               size="large"
               items={tabItems}
-              style={{ 
+              style={{
                 padding: '0 16px',
               }}
               tabBarStyle={{
@@ -188,19 +195,19 @@ const UpcomingPage: React.FC = () => {
         )}
 
         {/* Main Experience Card */}
-          <Card 
-            className="trek-main-card"
-            style={{ 
-              marginBottom: '40px',
-              borderRadius: '16px',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-              overflow: 'hidden'
-            }}
-          >
+        <Card
+          className="trek-main-card"
+          style={{
+            marginBottom: '40px',
+            borderRadius: '16px',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+            overflow: 'hidden'
+          }}
+        >
           <Row gutter={[32, 32]} align="top">
             <Col xs={24} lg={12}>
               <div className="trek-carousel" style={{ paddingTop: '8px', position: 'relative' }}>
-                <Carousel 
+                <Carousel
                   ref={carouselRef}
                   autoplay
                   autoplaySpeed={4000}
@@ -211,8 +218,8 @@ const UpcomingPage: React.FC = () => {
                 >
                   {selectedTrek.images.map((image, index) => (
                     <div key={index}>
-                      <img 
-                        src={image} 
+                      <img
+                        src={image}
                         alt={`${selectedTrek.title} - Image ${index + 1}`}
                         className="carousel-image"
                       />
@@ -265,13 +272,13 @@ const UpcomingPage: React.FC = () => {
                   {selectedTrek.description}
                 </Paragraph>
 
-{(selectedTrek.pricing.totalCostWithTransport > 0 || selectedTrek.pricing.totalCostWithoutTransport > 0) && (
+                {(selectedTrek.pricing.totalCostWithTransport > 0 || selectedTrek.pricing.totalCostWithoutTransport > 0) && (
                   <div className={`pricing-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
                     <div className="pricing-header">
                       <WalletOutlined className="wallet-icon" />
                       <Text strong className="pricing-title">
-                        {selectedTrek.pricing.totalCostWithTransport > 0 && selectedTrek.pricing.totalCostWithoutTransport > 0 
-                          ? 'Pricing Options:' 
+                        {selectedTrek.pricing.totalCostWithTransport > 0 && selectedTrek.pricing.totalCostWithoutTransport > 0
+                          ? 'Pricing Options:'
                           : 'Pricing:'}
                       </Text>
                     </div>
@@ -311,7 +318,7 @@ const UpcomingPage: React.FC = () => {
                     }
                     type="info"
                     showIcon
-                    style={{ 
+                    style={{
                       borderRadius: '8px',
                       border: '1px solid #91d5ff',
                       background: isDarkMode ? '#111d2c' : '#e6f7ff'
@@ -335,10 +342,10 @@ const UpcomingPage: React.FC = () => {
                   }
                   type="success"
                   showIcon
-                  style={{ 
+                  style={{
                     borderRadius: '8px',
                     border: '2px solid #d4a574',
-                    background: isDarkMode 
+                    background: isDarkMode
                       ? 'linear-gradient(135deg, #1a2f1a 0%, #2d1f0a 100%)'
                       : 'linear-gradient(135deg, #f6ffed 0%, #fff7e6 100%)',
                     color: isDarkMode ? '#e5e5e5' : 'inherit'
@@ -347,12 +354,12 @@ const UpcomingPage: React.FC = () => {
 
                 <Row gutter={[12, 12]}>
                   <Col xs={24} sm={12}>
-                    <Button 
-                      type="primary" 
-                      size="large" 
+                    <Button
+                      type="primary"
+                      size="large"
                       block
                       onClick={handleBookNow}
-                      style={{ 
+                      style={{
                         height: '50px',
                         fontSize: '16px',
                         fontWeight: 'bold'
@@ -362,13 +369,13 @@ const UpcomingPage: React.FC = () => {
                     </Button>
                   </Col>
                   <Col xs={24} sm={12}>
-                    <Button 
-                      type="default" 
-                      size="large" 
+                    <Button
+                      type="default"
+                      size="large"
                       block
                       icon={<DownloadOutlined />}
                       onClick={handleDownloadBrochure}
-                      style={{ 
+                      style={{
                         height: '50px',
                         fontSize: '16px',
                         fontWeight: 'bold',
@@ -391,7 +398,7 @@ const UpcomingPage: React.FC = () => {
             {/* Video Section - Only show if videoUrl exists */}
             {selectedTrek.videoUrl && (
               <Col xs={24} lg={12}>
-                <div style={{ 
+                <div style={{
                   position: 'relative',
                   paddingTop: '56.25%', /* 16:9 Aspect Ratio */
                   width: '100%',
@@ -416,7 +423,7 @@ const UpcomingPage: React.FC = () => {
                 </div>
               </Col>
             )}
-            
+
             {/* Highlights List */}
             <Col xs={24} lg={selectedTrek.videoUrl ? 12 : 24}>
               <Row gutter={[16, 16]}>
@@ -438,10 +445,10 @@ const UpcomingPage: React.FC = () => {
           <Row gutter={[24, 16]}>
             {selectedTrek.itinerary.map((day, index) => (
               <Col xs={24} key={index}>
-                <Card 
-                  size="small" 
-                  style={{ 
-                    background: isDarkMode 
+                <Card
+                  size="small"
+                  style={{
+                    background: isDarkMode
                       ? (index % 2 === 0 ? '#262626' : '#1a1a1a')
                       : (index % 2 === 0 ? '#f8f9fa' : 'white'),
                     border: isDarkMode ? '1px solid #404040' : '1px solid #e8e8e8',
@@ -480,8 +487,8 @@ const UpcomingPage: React.FC = () => {
         {/* Inclusions & Exclusions */}
         <Row gutter={[24, 24]}>
           <Col xs={24} lg={12}>
-            <Card 
-              title="What's Included" 
+            <Card
+              title="What's Included"
               style={{ borderRadius: '12px' }}
               headStyle={{ background: '#f6ffed', color: '#52c41a' }}
             >
@@ -496,8 +503,8 @@ const UpcomingPage: React.FC = () => {
             </Card>
           </Col>
           <Col xs={24} lg={12}>
-            <Card 
-              title="What's Not Included" 
+            <Card
+              title="What's Not Included"
               style={{ borderRadius: '12px' }}
               headStyle={{ background: '#fff2f0', color: '#ff4d4f' }}
             >
@@ -515,19 +522,19 @@ const UpcomingPage: React.FC = () => {
 
         {/* Pricing Breakdown - Only show if pricing is available */}
         {(selectedTrek.pricing.totalCostWithTransport > 0 || selectedTrek.pricing.totalCostWithoutTransport > 0) && (
-          <Card 
-            title="Package Pricing" 
-            style={{ 
-              marginTop: '40px', 
+          <Card
+            title="Package Pricing"
+            style={{
+              marginTop: '40px',
               borderRadius: '12px',
               background: isDarkMode ? '#1a1a1a' : '#f8f9fa'
             }}
           >
             <Row gutter={[24, 24]}>
               <Col xs={24} md={12}>
-                <div style={{ 
-                  background: isDarkMode ? '#262626' : 'white', 
-                  padding: '20px', 
+                <div style={{
+                  background: isDarkMode ? '#262626' : 'white',
+                  padding: '20px',
                   borderRadius: '8px',
                   border: '1px solid #e8e8e8'
                 }}>
@@ -560,8 +567,8 @@ const UpcomingPage: React.FC = () => {
                         Total Cost{selectedTrek.id === 'sandakphu' ? ' (incl. GST)' : ''}:
                       </Text>
                       <Text strong style={{ fontSize: '18px', color: '#52c41a' }}>
-                        ₹{(selectedTrek.pricing.totalCostWithTransport > 0 
-                          ? selectedTrek.pricing.totalCostWithTransport 
+                        ₹{(selectedTrek.pricing.totalCostWithTransport > 0
+                          ? selectedTrek.pricing.totalCostWithTransport
                           : selectedTrek.pricing.totalCostWithoutTransport).toLocaleString('en-IN')}
                       </Text>
                     </Row>
@@ -569,9 +576,9 @@ const UpcomingPage: React.FC = () => {
                 </div>
               </Col>
               <Col xs={24} md={12}>
-                <div style={{ 
-                  background: isDarkMode ? '#262626' : 'white', 
-                  padding: '20px', 
+                <div style={{
+                  background: isDarkMode ? '#262626' : 'white',
+                  padding: '20px',
                   borderRadius: '8px',
                   border: '1px solid #e8e8e8'
                 }}>
@@ -585,12 +592,12 @@ const UpcomingPage: React.FC = () => {
                         ₹{selectedTrek.pricing.registrationFee.toLocaleString('en-IN')}
                       </Text>
                     </Row>
-{(selectedTrek.pricing.remainingAmountWithTransport > 0 || selectedTrek.pricing.remainingAmountWithoutTransport > 0) && (
+                    {(selectedTrek.pricing.remainingAmountWithTransport > 0 || selectedTrek.pricing.remainingAmountWithoutTransport > 0) && (
                       <Row justify="space-between">
                         <Text>Remaining Amount:</Text>
                         <Text strong>
-                          ₹{(selectedTrek.pricing.remainingAmountWithTransport > 0 
-                            ? selectedTrek.pricing.remainingAmountWithTransport 
+                          ₹{(selectedTrek.pricing.remainingAmountWithTransport > 0
+                            ? selectedTrek.pricing.remainingAmountWithTransport
                             : selectedTrek.pricing.remainingAmountWithoutTransport).toLocaleString('en-IN')}
                         </Text>
                       </Row>
@@ -602,10 +609,10 @@ const UpcomingPage: React.FC = () => {
                       </Text>
                     </Row>
                   </Space>
-                  <div style={{ 
-                    marginTop: '16px', 
-                    padding: '12px', 
-                    background: '#fff7e6', 
+                  <div style={{
+                    marginTop: '16px',
+                    padding: '12px',
+                    background: '#fff7e6',
                     borderRadius: '6px',
                     border: '1px solid #ffd591'
                   }}>
@@ -621,10 +628,10 @@ const UpcomingPage: React.FC = () => {
 
         {/* Cancellation Policy - Only show if policies exist */}
         {selectedTrek.cancellationPolicy.length > 0 && (
-          <Card 
-            title="Cancellation Policy" 
-            style={{ 
-              marginTop: '40px', 
+          <Card
+            title="Cancellation Policy"
+            style={{
+              marginTop: '40px',
               borderRadius: '12px',
               background: isDarkMode ? '#1a1a1a' : '#f8f9fa'
             }}
@@ -632,9 +639,9 @@ const UpcomingPage: React.FC = () => {
             <Row gutter={[16, 16]}>
               {selectedTrek.cancellationPolicy.map((policy, index) => (
                 <Col xs={24} sm={12} lg={6} key={index}>
-                  <Card 
+                  <Card
                     size="small"
-                    style={{ 
+                    style={{
                       background: isDarkMode ? '#262626' : 'white',
                       border: '1px solid #e8e8e8',
                       textAlign: 'center'
@@ -661,17 +668,17 @@ const UpcomingPage: React.FC = () => {
       </div>
 
       {/* Payment Integration Message */}
-      <div 
+      <div
         ref={paymentMessageRef}
-        style={{ 
+        style={{
           padding: '60px 24px',
           maxWidth: '1200px',
           margin: '0 auto',
           textAlign: 'center'
         }}
       >
-        <Card 
-          style={{ 
+        <Card
+          style={{
             borderRadius: '12px',
             boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
             border: '2px solid #d4a574'
@@ -680,15 +687,15 @@ const UpcomingPage: React.FC = () => {
           <Space direction="vertical" size="large" style={{ width: '100%' }}>
             <CreditCardOutlined style={{ fontSize: '48px', color: '#d4a574' }} />
             <Title level={2} style={{ margin: 0, color: '#d4a574' }}>
-              Quick Booking 
+              Quick Booking
             </Title>
             <div className="quick-booking-section">
               <Row gutter={[24, 24]} align="stretch">
                 <Col xs={24} md={12}>
                   <div className="booking-container">
                     <div className="booking-content">
-                      <Button 
-                        type="primary" 
+                      <Button
+                        type="primary"
                         size="large"
                         onClick={() => {
                           if (selectedTrek.registrationLink) {
@@ -701,7 +708,7 @@ const UpcomingPage: React.FC = () => {
                       >
                         🎯 Book Your Slot Now
                       </Button>
-                      
+
                       <div className={`confirmation-message ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
                         <Text className={`confirmation-text ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
                           📧 After successful payment, you'll receive a confirmation email from Team OBS with the WhatsApp group link. Please join the group to stay updated!
@@ -713,8 +720,8 @@ const UpcomingPage: React.FC = () => {
                 <Col xs={24} md={12}>
                   <div className="booking-container">
                     <div className="booking-content">
-                      <Button 
-                        type="primary" 
+                      <Button
+                        type="primary"
                         size="large"
                         icon={<WhatsAppIcon />}
                         href="https://wa.me/917983414419"
@@ -723,7 +730,7 @@ const UpcomingPage: React.FC = () => {
                       >
                         💬 Chat With Us!
                       </Button>
-                      
+
                       <Paragraph className="contact-info">
                         <Text strong>Reach out to us for any queries:</Text><br />
                         <br />
@@ -740,8 +747,8 @@ const UpcomingPage: React.FC = () => {
       </div>
 
       {/* Booking Modal */}
-      <BookingModal 
-        open={bookingModalOpen} 
+      <BookingModal
+        open={bookingModalOpen}
         onClose={() => setBookingModalOpen(false)}
         trekTitle={selectedTrek.title}
         pricing={selectedTrek.pricing}
