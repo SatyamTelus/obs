@@ -103,6 +103,11 @@ const HomePage: React.FC = () => {
                       <Title level={3} className="featured-trek-title">
                         {featuredTreks[0].title}
                       </Title>
+                      {(featuredTreks[0] as { badgeLabel?: string }).badgeLabel && (
+                        <Tag color="purple" className="featured-trek-badge">
+                          {(featuredTreks[0] as { badgeLabel?: string }).badgeLabel}
+                        </Tag>
+                      )}
                       <Paragraph className="featured-trek-subtitle">
                         {featuredTreks[0].subtitle}
                       </Paragraph>
@@ -171,6 +176,11 @@ const HomePage: React.FC = () => {
                     <Title level={3} className="featured-trek-title">
                       {trek.title}
                     </Title>
+                    {(trek as { badgeLabel?: string }).badgeLabel && (
+                      <Tag color="purple" className="featured-trek-badge">
+                        {(trek as { badgeLabel?: string }).badgeLabel}
+                      </Tag>
+                    )}
                     <Paragraph className="featured-trek-subtitle">
                       {trek.subtitle}
                     </Paragraph>
