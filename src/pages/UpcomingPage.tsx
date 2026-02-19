@@ -6,17 +6,8 @@ import { useSearchParams } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import BookingModal from '../components/BookingModal';
 import { brahmatalData } from '../assets/treks/bhramtal/BrahmatalData';
-<<<<<<< HEAD
 import { nagtibbaData } from '../assets/treks/nagtibba/NagtibbaData';
 import { keralaData } from '../assets/treks/kerala/KeralaData';
-=======
-
-import { sandakphuData } from '../assets/treks/sandakhpu/SandakphuData';
-
-import { nagTibbaData } from '../assets/treks/nagtibba/NagTibbaData';
-import { keralaData } from '../assets/treks/kerala/KeralaData';
-
->>>>>>> d8790af (Added Kerala + Nag Tibba trek updates)
 import type { TrekData } from '../assets/treks/TrekData';
 import '../styles/components/HeroSection.less';
 import '../styles/components/UpcomingPage.less';
@@ -34,16 +25,9 @@ const { Title, Paragraph, Text } = Typography;
 
 // All available treks (order: Brahmatal, Nagtibba, Kerala)
 const allTreks: TrekData[] = [
-<<<<<<< HEAD
   brahmatalData,
   nagtibbaData,
   keralaData,
-=======
-  sandakphuData,
-  brahmatalData,
-  nagTibbaData,
-  keralaData
->>>>>>> d8790af (Added Kerala + Nag Tibba trek updates)
 ];
 
 const UpcomingPage: React.FC = () => {
