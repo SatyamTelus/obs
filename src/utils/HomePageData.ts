@@ -5,8 +5,8 @@ import groupMountain from '../assets/treks/spiti/group-mountain.png';
 import groupBackpack from '../assets/treks/yulla/group-backpack.png';
 import brahmatalImg from '../assets/treks/bhramtal/bhramtal.jpg';
 // Placeholder images for Nagtibba and Kerala – replace when assets are ready
-import nagtibbaImg from '../assets/treks/bhramtal/bhramtal.jpg';
-import keralaImg from '../assets/treks/bhramtal/bhramtal.jpg';
+import nagtibbaImg from '../assets/treks/nagtibba/nag-tibba.png';
+import keralaImg from '../assets/treks/kerala/kerala-trip.png';
 
 // Featured treks data (order: 1. Brahmatal, 2. Nagtibba, 3. Kerala)
 export const featuredTreks = [
@@ -31,11 +31,10 @@ export const featuredTreks = [
     duration: '3 Days / 2 Nights',
     location: 'Garhwal Himalayas, Uttarakhand',
     price: '₹5,500',
-    priceNote: 'Dehradun to Dehradun • ₹1,500 now, ₹4,000 by 15 March',
+    priceNote: 'with transport, incl. GST',
     image: nagtibbaImg,
     highlights: ['All girls trip', 'Dehradun to Dehradun', 'Pilani to Pilani package – call 7983414419'],
-    color: '#7c3aed',
-    badgeLabel: 'All Girls Trip',
+    color: '#7c3aed'
   },
   {
     id: 'kerala',
@@ -44,8 +43,9 @@ export const featuredTreks = [
     date: 'April 17-21, 2026',
     duration: '5 Days / 4 Nights',
     location: 'Kerala',
+    originalPrice: '₹30,000',
     price: '₹27,000',
-    priceNote: 'Early bird (was ₹30,000) • Only 2 seats left • ₹6,750 now, rest later',
+    priceNote: 'Early bird',
     image: keralaImg,
     highlights: ['Early bird ₹27,000', 'Only 2 seats left at discount', '₹6,750 now, rest later'],
     color: '#059669',

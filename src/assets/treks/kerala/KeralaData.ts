@@ -1,7 +1,10 @@
 // Placeholder images – replace with Kerala trip images when available
-import placeholder1 from '../bhramtal/bhrama_1.png';
-import placeholder2 from '../bhramtal/bhrama_2.png';
-import placeholder3 from '../bhramtal/bhrama_3.png';
+import kerala1 from './kerala_1.webp';
+import kerala2 from './kerala_2.jpg';
+import kerala3 from './kerala_3.jpg';
+import kerala4 from './kerala_4.jpg';
+import kerala5 from './kerala_5.jpg';
+
 import type { TrekData } from '../TrekData';
 
 export const keralaData: TrekData = {
@@ -11,59 +14,69 @@ export const keralaData: TrekData = {
   duration: '5 Days / 4 Nights',
   difficulty: 'Easy',
   location: 'Kerala',
-  images: [placeholder1, placeholder2, placeholder3],
+  images: [kerala5, kerala2, kerala4, kerala1, kerala3],
   // No brochure for Kerala
   description:
     'Explore the backwaters, hills and culture of Kerala with OBS. Early bird price ₹27,000 (original ₹30,000). Only 2 seats left at this discount. Pay ₹6,750 now and the rest later.',
   highlights: [
-    'Early bird discount: ₹27,000 (original ₹30,000)',
-    'Only 2 seats left at early bird price',
-    'Pay ₹6,750 now, rest can be paid later',
-    'April 17–21, 2026',
-    'Backwaters, hills and cultural experiences',
+    'All girls trip – women-only group',
+    'Alpine Olympics',
+    'Happiness Sharing',
+    'Meet up and Intro in OBS style 😎',
+    'Aline Circuit',
+    'Backwaters, hills and cultural experiences'
   ],
   itinerary: [
     {
       day: 'Day 1',
-      title: 'Arrival and orientation',
-      description: 'Reach Kerala and settle in',
+      title: 'Kochi → Munnar',
+      description: 'Arrival at Kochi, meet up and intro. with Yatharth. Drive to Munnar.',
       type: 'Travel',
     },
     {
       day: 'Day 2',
-      title: 'Exploration day',
-      description: 'Activities and sightseeing',
-      type: 'Trek',
+      title: 'Exploration & Sightseeing in Munnar',
+      description: 'Explore Munnar with visits to Eravikulam National Park, Echo Point, Kundala Lake, and the Rose Garden. Enjoy OBS activities before returning to your hotel for an overnight stay.',
+      type: 'Sightseeing',
     },
     {
       day: 'Day 3',
-      title: 'Exploration day',
-      description: 'Activities and sightseeing',
+      title: 'Trek to Chokramudi Peak',
+      description: 'Start with breakfast and trek Chokramudi Peak for scenic views. Visit Gap Road, Lock Heart View Point, Blossom Park, and Pothamedu View Point, with free time in the evening for local shopping.',
       type: 'Trek',
     },
     {
       day: 'Day 4',
-      title: 'Exploration day',
-      description: 'Activities and sightseeing',
-      type: 'Trek',
+      title: 'Munnar → Alleppey Houseboat Stay',
+      description: 'After breakfast, enjoy meditation and journaling, then drive to Alleppey for a houseboat stay. Cruise the serene backwaters with meals onboard and an overnight stay by the waters.',
+      type: 'Travel',
     },
     {
       day: 'Day 5',
-      title: 'Departure',
-      description: 'Checkout and journey back',
+      title: 'Alleppey → Fort Kochi',
+      description: 'Enjoy a houseboat breakfast cruise, then drive to Fort Kochi to visit key landmarks and the beach. Conclude your Kerala trip with a farewell, award ceremony, and memorable moments.',
       type: 'Travel',
     },
   ],
   inclusions: [
-    'Stay for 4 nights',
+    '4-night stay in hotels and a traditional houseboat',
     'Meals as per itinerary',
-    'Activities and local transport as included',
-    'Guide and coordination',
+    'Private A/C vehicle with driver for transfers and sightseeing',
+    'Driver\'s allowance, toll fees, parking, and all applicable taxes',
+    'Entry ticket to Eravikulam National Park',
+    'Boating at Echo Point',
+    'All OBS Signature Activities',
+    'Welcome & Farewell gifts',
+    'Gifts for Winners',
+    'Memories for a lifetime ;)'
   ],
   exclusions: [
-    'Travel to/from Kerala',
+    'Airfare or train tickets to/from Kerala',
     'Personal expenses',
-    'Anything not listed in inclusions',
+    'Any meals not mentioned in the meal plan',
+    'Any boating or activity charges not specifically included in the itinerary',
+    'Any costs arising due to unforeseen circumstances like landslides, road blocks, etc.',
+    'Anything not listed in inclusions'
   ],
   pricing: {
     trekFee: 27000,

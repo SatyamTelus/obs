@@ -122,15 +122,18 @@ const HomePage: React.FC = () => {
                       </div>
                       
                       <ul className="featured-trek-highlights">
-                        {featuredTreks[0].highlights.map((h, i) => (
+                        {featuredTreks[0]?.highlights?.map((h, i) => (
                           <li key={i}>{h}</li>
                         ))}
                       </ul>
                       
                       <div className="featured-trek-footer">
                         <div className="featured-trek-price">
+                          {(featuredTreks[0] as { originalPrice?: string }).originalPrice && (
+                            <span className="price-original">{(featuredTreks[0] as { originalPrice?: string }).originalPrice}</span>
+                          )}
                           <span className="price">{featuredTreks[0].price}</span>
-                          <span className="price-note">{featuredTreks[0].priceNote}</span>
+                          {featuredTreks[0].priceNote && <span className="price-note">{featuredTreks[0].priceNote}</span>}
                         </div>
                         <Button 
                           type="primary" 
@@ -195,15 +198,18 @@ const HomePage: React.FC = () => {
                     </div>
                     
                     <ul className="featured-trek-highlights">
-                      {trek.highlights.map((h, i) => (
+                      {trek.highlights?.map((h, i) => (
                         <li key={i}>{h}</li>
                       ))}
                     </ul>
                     
                     <div className="featured-trek-footer">
                       <div className="featured-trek-price">
+                        {(trek as { originalPrice?: string }).originalPrice && (
+                          <span className="price-original">{(trek as { originalPrice?: string }).originalPrice}</span>
+                        )}
                         <span className="price">{trek.price}</span>
-                        <span className="price-note">{trek.priceNote}</span>
+                        {trek.priceNote && <span className="price-note">{trek.priceNote}</span>}
                       </div>
                       <Button 
                         type="primary" 

@@ -269,7 +269,7 @@ const UpcomingPage: React.FC = () => {
                       {selectedTrek.duration}
                     </Tag>
                     {selectedTrek.allGirlsTrip && (
-                      <Tag color="purple" style={{ fontWeight: 600 }}>
+                      <Tag color="pink" style={{ fontWeight: 600 }}>
                         All Girls Trip
                       </Tag>
                     )}
@@ -277,14 +277,13 @@ const UpcomingPage: React.FC = () => {
                   {selectedTrek.allGirlsTrip && (
                     <Alert
                       message="All Girls Trip"
-                      description="This is an all-girls trip. Join a supportive group of women for this adventure!"
+                      description="Girls only getaway — good vibes guaranteed! ⛰️"
                       type="info"
-                      showIcon
                       style={{
                         marginTop: 8,
                         borderRadius: 8,
-                        border: '1px solid #9254de',
-                        background: isDarkMode ? '#1a0f2e' : '#f9f0ff',
+                        border: '1px solid #f4a7c5',
+                        background: isDarkMode ? '#2a1620' : '#fff7fa', 
                       }}
                     />
                   )}
