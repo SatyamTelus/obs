@@ -14,7 +14,7 @@ export const featuredTreks = [
   {
     id: 'Yulla-July',
     title: 'Yulla Kanda Trek',
-    subtitle: 'Trekking Club x OBS Experience',
+    subtitle: 'OBS Experience',
     date: 'July 1-4, 2026',
     duration: '4 Days / 3 Nights',
     location: 'Yulla Khas , Himachal Pradesh',
