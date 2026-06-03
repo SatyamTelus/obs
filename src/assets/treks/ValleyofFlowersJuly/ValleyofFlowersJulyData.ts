@@ -12,6 +12,7 @@ export const valleyOfFlowersJulyData: TrekData = {
   location: 'Garhwal hills, Uttarakhand',
   images: [VOFImage1,
     VOFImage2,
+    VOFImage3
   ],
   registrationLink: ' https://u.payu.in/PAYUMN/Srj7sGcrUsRm',
   brochure: ValleyofFlowerBrochure,
