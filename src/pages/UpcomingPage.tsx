@@ -2,8 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Row, Col, Typography, Card, Button, Space, Tag, Alert, Carousel, Tabs, Modal } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 import { CalendarOutlined, EnvironmentOutlined, ClockCircleOutlined, WalletOutlined, DownloadOutlined, CreditCardOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { useAuth } from '../contexts/AuthContext';
+import { api } from '../api/axios';
 import BookingModal from '../components/BookingModal';
 import { YullaJulyData } from '../assets/treks/yullaKandaJuly/yullaKandaData';
 import { valleyOfFlowersJulyData } from '../assets/treks/ValleyofFlowersJuly/ValleyofFlowersJulyData';
@@ -26,12 +28,24 @@ const allTreks: TrekData[] = [
 
 const UpcomingPage: React.FC = () => {
   const { isDarkMode } = useDarkMode();
+  const { isAuthenticated } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const paymentMessageRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<CarouselRef>(null);
   const trekContentRef = useRef<HTMLDivElement>(null);
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [upiModalOpen, setUpiModalOpen] = useState(false);
+  const [myBookings, setMyBookings] = useState<{ trekId: { title: string }; status: string }[]>([]);
+
+  // Fetch the user's existing bookings so we can block duplicate booking attempts
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    api.get<{ bookings: { trekId: { title: string }; status: string }[] }>('/api/bookings/my')
+      .then((data) => setMyBookings(data.bookings))
+      .catch(() => { /* silently ignore — duplicate check is enforced on the backend too */ });
+  }, [isAuthenticated]);
 
   // Initialize selected trek from URL parameter or default to first trek
   const getInitialTrek = (): TrekData => {
@@ -91,18 +105,44 @@ const UpcomingPage: React.FC = () => {
   );
 
   const handleBookNow = () => {
+    // Redirect unauthenticated users to /auth, preserving the current trek URL
+    if (!isAuthenticated) {
+      navigate('/auth', { state: { returnTo: `${location.pathname}${location.search}` } });
+      return;
+    }
+
+    // Block re-booking only if the trek is already COMPLETED (paid and done).
+    // A Pending booking means payment was initiated but not finished (e.g. failed/abandoned)
+    // — the user should be able to retry payment in that case.
+    const searchKey = selectedTrek.title.split(' - ')[0].toLowerCase();
+    const alreadyCompleted = myBookings.some(
+      (b) => {
+        if (!b.trekId?.title || !b.status) return false;
+        const dbTitle = b.trekId.title.toLowerCase();
+        return (
+          (dbTitle.includes(searchKey) || searchKey.includes(dbTitle.split(' - ')[0])) &&
+          b.status === 'Completed'
+        );
+      }
+    );
+
+    if (alreadyCompleted) {
+      Modal.warning({
+        title: 'Trek Already Booked',
+        content: `You have already completed payment for ${selectedTrek.title}. Check your profile for booking details.`,
+        okText: 'View Profile',
+        cancelText: 'Close',
+        okCancel: true,
+        onOk: () => navigate('/profile'),
+      });
+      return;
+    }
+
     if (useUpiPayment) {
       setUpiModalOpen(true);
       return;
     }
-    if (selectedTrek.registrationLink) {
-      window.open(selectedTrek.registrationLink, '_blank');
-    } else {
-      paymentMessageRef.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
+    setBookingModalOpen(true);
   };
 
   const handleDownloadBrochure = () => {
@@ -889,13 +929,7 @@ const UpcomingPage: React.FC = () => {
                       <Button 
                         type="primary" 
                         size="large"
-                        onClick={() => {
-                          if (useUpiPayment) {
-                            setUpiModalOpen(true);
-                          } else if (selectedTrek.registrationLink) {
-                            window.open(selectedTrek.registrationLink, '_blank');
-                          }
-                        }}
+                        onClick={handleBookNow}
                         className="booking-button"
                       >
                         🎯 Book Your Slot Now
@@ -976,7 +1010,6 @@ const UpcomingPage: React.FC = () => {
         onClose={() => setBookingModalOpen(false)}
         trekTitle={selectedTrek.title}
         pricing={selectedTrek.pricing}
-        paymentLinks={selectedTrek.paymentLinks}
         transportationRoute={selectedTrek.transportationRoute || 'To be announced'}
       />
     </div>

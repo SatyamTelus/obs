@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, Radio, Space, Typography, Button, Divider, Card, Row, Col, Alert } from 'antd';
 import { CheckCircleOutlined, WalletOutlined, CreditCardOutlined } from '@ant-design/icons';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import type { PricingDetails, PaymentLinks } from '../assets/treks/TrekData';
+import type { PricingDetails } from '../assets/treks/TrekData';
+import { api } from '../api/axios';
 import '../styles/components/BookingModal.less';
 
 const { Title, Text, Paragraph } = Typography;
@@ -12,7 +13,6 @@ interface BookingModalProps {
   onClose: () => void;
   trekTitle: string;
   pricing: PricingDetails;
-  paymentLinks: PaymentLinks;
   transportationRoute?: string;
 }
 
@@ -21,63 +21,120 @@ const BookingModal: React.FC<BookingModalProps> = ({
   onClose, 
   trekTitle, 
   pricing, 
-  paymentLinks,
   transportationRoute = 'Transportation included'
 }) => {
   const { isDarkMode } = useDarkMode();
   const [alreadyPaidRegistration, setAlreadyPaidRegistration] = useState<boolean>(false);
-  const [withTransportation, setWithTransportation] = useState<boolean>(true);
+  
+  const hasWithTransport = pricing.totalCostWithTransport > 0;
+  const hasWithoutTransport = pricing.totalCostWithoutTransport > 0;
+
+  const [withTransportation, setWithTransportation] = useState<boolean>(hasWithTransport);
   const [paymentType, setPaymentType] = useState<'full' | 'registration'>('registration');
-  const [calculatedAmount, setCalculatedAmount] = useState<number>(0);
-  const [paymentLink, setPaymentLink] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Calculate amount and payment link based on selections
-  useEffect(() => {
-    let amount = 0;
-    let link = '';
-
-    if (alreadyPaidRegistration) {
-      // User has already paid registration, show remaining dues
-      if (withTransportation) {
-        amount = pricing.remainingAmountWithTransport;
-        link = paymentLinks.remainingDuesWithTransport;
-      } else {
-        amount = pricing.remainingAmountWithoutTransport;
-        link = paymentLinks.remainingDuesWithoutTransport;
-      }
-    } else {
-      // User hasn't paid registration yet
-      if (paymentType === 'full') {
-        // Full payment
-        if (withTransportation) {
-          amount = pricing.totalCostWithTransport;
-          link = paymentLinks.fullPaymentWithTransport;
-        } else {
-          amount = pricing.totalCostWithoutTransport;
-          link = paymentLinks.fullPaymentWithoutTransport;
-        }
-      } else {
-        // Registration only
-        amount = pricing.registrationFee;
-        link = paymentLinks.registrationOnly;
-      }
+  // Synchronize withTransportation when modal opens or pricing changes
+  React.useEffect(() => {
+    if (open) {
+      setWithTransportation(pricing.totalCostWithTransport > 0);
     }
+  }, [open, pricing]);
 
-    setCalculatedAmount(amount);
-    setPaymentLink(link);
-  }, [alreadyPaidRegistration, withTransportation, paymentType, pricing, paymentLinks]);
+  // Derive the display amount from user selections (for UI display only — not sent to server)
+  const calculatedAmount = (() => {
+    if (alreadyPaidRegistration) {
+      return withTransportation
+        ? pricing.remainingAmountWithTransport
+        : pricing.remainingAmountWithoutTransport;
+    }
+    if (paymentType === 'full') {
+      return withTransportation
+        ? pricing.totalCostWithTransport
+        : pricing.totalCostWithoutTransport;
+    }
+    return pricing.registrationFee;
+  })();
 
-  const handleBookNow = () => {
-    if (paymentLink) {
-      window.open(paymentLink, '_blank');
+  /**
+   * Maps user selections to one of the 5 server-recognised paymentOption keys.
+   * The server resolves this key to the real INR price from the Trek DB record.
+   * The client never sends a raw amount — this eliminates the price-tampering risk.
+   */
+  const getPaymentOption = (): string => {
+    if (alreadyPaidRegistration) {
+      return withTransportation ? 'remainingWithTransport' : 'remainingWithoutTransport';
+    }
+    if (paymentType === 'full') {
+      return withTransportation ? 'fullWithTransport' : 'fullWithoutTransport';
+    }
+    return 'registration';
+  };
+
+  const handleBookNow = async () => {
+    setLoading(true);
+    setErrorMsg(null);
+    try {
+      // Send only the intent (which option the user chose) — never the price.
+      // The server resolves the real INR amount from the Trek DB record.
+      const data = await api.post<{
+        key: string;
+        txnid: string;
+        amount: string;
+        productinfo: string;
+        firstname: string;
+        email: string;
+        hash: string;
+        surl: string;
+        furl: string;
+        actionUrl: string;
+      }>('/api/payments/initiate', {
+        trekTitle,
+        paymentOption: getPaymentOption(),
+      });
+
+      // Dynamically submit the form to PayU
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = data.actionUrl;
+
+      const fields = {
+        key: data.key,
+        txnid: data.txnid,
+        amount: data.amount,
+        productinfo: data.productinfo,
+        firstname: data.firstname,
+        email: data.email,
+        hash: data.hash,
+        surl: data.surl,
+        furl: data.furl,
+      };
+
+      Object.entries(fields).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+      
       onClose();
+    } catch (err: any) {
+      console.error('Payment initiation failed:', err);
+      setErrorMsg(err?.message || 'Failed to initiate payment. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleReset = () => {
     setAlreadyPaidRegistration(false);
-    setWithTransportation(true);
+    setWithTransportation(pricing.totalCostWithTransport > 0);
     setPaymentType('registration');
+    setErrorMsg(null);
   };
 
   return (
@@ -154,21 +211,29 @@ const BookingModal: React.FC<BookingModalProps> = ({
             className="custom-radio-group"
           >
             <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-              <Radio value={true} className="custom-radio">
+              <Radio value={true} className="custom-radio" disabled={!hasWithTransport}>
                 <div className="radio-content">
-                  <Text strong>With Transportation</Text>
+                  <Text strong style={{ color: !hasWithTransport ? 'rgba(0, 0, 0, 0.25)' : undefined }}>
+                    With Transportation
+                  </Text>
                   <br />
                   <Text type="secondary" style={{ fontSize: '13px' }}>
-                    {transportationRoute} (+₹{pricing.transportationFee})
+                    {hasWithTransport 
+                      ? `${transportationRoute} (+₹${pricing.transportationFee})`
+                      : 'Not available for this trek'}
                   </Text>
                 </div>
               </Radio>
-              <Radio value={false} className="custom-radio">
+              <Radio value={false} className="custom-radio" disabled={!hasWithoutTransport}>
                 <div className="radio-content">
-                  <Text strong>Without Transportation</Text>
+                  <Text strong style={{ color: !hasWithoutTransport ? 'rgba(0, 0, 0, 0.25)' : undefined }}>
+                    Without Transportation
+                  </Text>
                   <br />
                   <Text type="secondary" style={{ fontSize: '13px' }}>
-                    I'll arrange my own transport
+                    {hasWithoutTransport 
+                      ? "I'll arrange my own transport"
+                      : 'Transportation is bundled with this trek'}
                   </Text>
                 </div>
               </Radio>
@@ -318,6 +383,16 @@ const BookingModal: React.FC<BookingModalProps> = ({
           </Row>
         </Card>
 
+        {errorMsg && (
+          <Alert
+            message="Payment Error"
+            description={errorMsg}
+            type="error"
+            showIcon
+            style={{ marginBottom: '16px' }}
+          />
+        )}
+
         {/* Action Buttons */}
         <Row gutter={[12, 12]}>
           <Col xs={24} sm={12}>
@@ -325,6 +400,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
               size="large"
               block
               onClick={onClose}
+              disabled={loading}
               style={{ height: '50px', fontSize: '16px' }}
             >
               Cancel
@@ -336,6 +412,7 @@ const BookingModal: React.FC<BookingModalProps> = ({
               size="large"
               block
               onClick={handleBookNow}
+              loading={loading}
               style={{ 
                 height: '50px', 
                 fontSize: '16px',
