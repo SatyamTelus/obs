@@ -2,7 +2,6 @@
 import groupSummit from '../assets/treks/yulla/group-summit.png';
 import groupMountain from '../assets/treks/spiti/group-mountain.png';
 import groupBackpack from '../assets/treks/yulla/group-backpack.png';
-import kuariJuneImg from '../assets/treks/kuari/kuari-ranges.png';
 import YullaJulyImg from '../assets/treks/yulla/grassland-mountain.jpg'
 import trekGroup from '../assets/trek_group.png';
 import bhramtalGroup from '../assets/treks/bhramtal/bhrama_group.png';
@@ -14,7 +13,7 @@ export const featuredTreks = [
   {
     id: 'Yulla-July',
     title: 'Yulla Kanda Trek',
-    subtitle: 'Trekking Club x OBS Experience',
+    subtitle: 'OBS Experience',
     date: 'July 1-4, 2026',
     duration: '4 Days / 3 Nights',
     location: 'Yulla Khas , Himachal Pradesh',
@@ -27,24 +26,7 @@ export const featuredTreks = [
       'Panoramic views of the snow-covered Himalayas',],
     color: '#0891b2',
   },
-  {
-    id: 'kuari-june',
-    title: 'Kuari Pass Trek',
-    subtitle: 'Summer Himalayan Adventure',
-    date: 'June 5-10, 2026',
-    duration: '6 Days / 5 Nights',
-    location: 'Garhwal Himalayas, Uttarakhand',
-    price: '₹12,999',
-    priceNote: 'with transport, incl. GST',
-    image: kuariJuneImg,
-    highlights: [
-      '360° Himalayan panorama at 12,500 ft',
-      'Views of Nanda Devi, Trishul & Chaukhamba',
-      'Alpine meadows on the legendary Curzon Trail',
-    ],
-    color: '#0891b2',
-  },
-  {
+ {
     id: 'ValleyofFlowers-July',
     title: 'Valley of Flowers Trek',
     subtitle: 'Summer Himalayan Adventure',

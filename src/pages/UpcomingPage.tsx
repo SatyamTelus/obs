@@ -7,7 +7,6 @@ import { useDarkMode } from '../contexts/DarkModeContext';
 import { useAuth } from '../contexts/AuthContext';
 import { api } from '../api/axios';
 import BookingModal from '../components/BookingModal';
-import { kuariJuneData } from '../assets/treks/KuariJune/KuariJuneData';
 import { YullaJulyData } from '../assets/treks/yullaKandaJuly/yullaKandaData';
 import { valleyOfFlowersJulyData } from '../assets/treks/ValleyofFlowersJuly/ValleyofFlowersJulyData';
 import type { TrekData } from '../assets/treks/TrekData';
@@ -17,7 +16,6 @@ import '../styles/components/UpcomingPage.less';
 import '../styles/components/CarouselCustom.less';
 import '../styles/components/TrekTabs.less';
 import grasslandMountain from '../assets/treks/yulla/grassland-mountain.jpg';
-import kuariJuneHero from '../assets/treks/KuariJune/KuariJuneHero.png';
 import YullaJulyHero from '../assets/treks/yulla/group-casual.png';
 import upiImage from '../assets/upi.jpg';
 
@@ -25,7 +23,6 @@ const { Title, Paragraph, Text } = Typography;
 
 const allTreks: TrekData[] = [
   YullaJulyData,
-  kuariJuneData,
   valleyOfFlowersJulyData
 ];
 
@@ -181,7 +178,6 @@ const UpcomingPage: React.FC = () => {
   };
 
   const getHeroImage = () => {
-    if (selectedTrek.id === 'kuari-june') return kuariJuneHero;
     if (selectedTrek.id === 'Yulla-July') return YullaJulyHero;
     return grasslandMountain;
   };
